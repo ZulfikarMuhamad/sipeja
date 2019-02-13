@@ -20,6 +20,9 @@ class Welcome extends MX_Controller {
 	 */
 	public function index()
 	{
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/sidebar-1');
 		$this->load->view('lab');
+		$this->load->view('layouts/footer');
 	}
 }
