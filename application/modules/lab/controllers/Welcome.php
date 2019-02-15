@@ -42,12 +42,12 @@ class Welcome extends CI_Controller {
  
   	function insert_laboratory_ctrlr(){ //insert record method
       	$this->crud_laboratory_model->insert_laboratory();
-      	redirect('welcome');
+      	redirect('lab');
  	}
  
  	function update_laboratory_ctrlr(){ //update record method
     	$this->crud_laboratory_model->update_laboratory();
-      	redirect('welcome');
+      	redirect('lab');
   	}
  
   	function delete_laboratory_ctrlr(){ //delete record method

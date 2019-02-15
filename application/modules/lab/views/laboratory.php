@@ -14,11 +14,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="row">
 				<div class="col-md-12">
 					<div class="mb-md pull-right">
-						<button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Add <i class="fa fa-plus"></i></button>
 					</div>
 				</div>
 			</div>
-			<table class="table table-bordered table-striped mb-none" id="table_laboratory">
+			<table class="table table-bordered table-striped" id="table_laboratory">
 				<thead>
 					<tr>
 						<th>Seksie Id</th>
@@ -33,46 +33,121 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- end: page -->
 </section>
 
-<div id="dialog" class="modal-block mfp-hide">
-	<section class="panel">
-		<header class="panel-heading">
-			<h2 class="panel-title">Are you sure?</h2>
-		</header>
-		<div class="panel-body">
-			<div class="modal-wrapper">
-				<div class="modal-text">
-					<p>Are you sure that you want to delete this row?</p>
+<!-- Modal Add Product-->
+<form id="add-row-form" action="<?php echo site_url('lab/welcome/insert_laboratory_ctrlr');?>" method="post">
+    <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        	<section class="panel">
+				<header class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h2 class="panel-title">Form Tambah Laboratorium</h2>
+				</header>
+				<div class="panel-body">
+					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+						<div class="form-group mt-lg">
+							<label class="col-sm-3 control-label" style="">Seksi ID</label>
+							<div class="col-sm-9">
+								<input type="number" name="input_seksieId" class="form-control" placeholder="Contoh : 1" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Nama</label>
+							<div class="col-sm-9">
+								<input type="text" name="input_name" class="form-control" placeholder="Contoh : Logam" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Kode</label>
+							<div class="col-sm-9">
+								<input type="text" name="input_code" class="form-control" placeholder="Contoh : A23" />
+							</div>
+						</div>
+					</form>
 				</div>
-			</div>
-		</div>
-		<footer class="panel-footer">
-			<div class="row">
-				<div class="col-md-12 text-right">
-					<button id="dialogConfirm" class="btn btn-primary">Confirm</button>
-					<button id="dialogCancel" class="btn btn-default">Cancel</button>
-				</div>
-			</div>
-		</footer>
-	</section>
-</div>
+				<footer class="panel-footer">
+					<div class="row">
+						<div class="col-md-12 text-right">
+							<button type="submit" class="btn btn-primary modal-confirm">Tambah</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+						</div>
+					</div>
+				</footer>
+			</section>
+        </div>
+    </div>
+</form>
 
-<form id="add-row-form" action="<?php echo site_url('lab/welcome/delete_laboratory_ctrlr');?>" method="post">
+<!-- Modal Delete Product-->
+<form id="add-row-form" action="<?php echo base_url();?>index.php/lab/welcome/delete_laboratory_ctrlr" method="post">
     <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Delete Product</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="product_code" class="form-control" required>
-                    <strong>Are you sure to delete this record?</strong>
-               	</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-success">Yes</button>
-                </div>
-            </div>
+			<section class="panel">
+				<div class="panel-body text-center">
+					<div class="modal-wrapper">
+						<div class="modal-icon center">
+							<i class="fa fa-question-circle"></i>
+						</div>
+						<div class="modal-text">
+							<input type="hidden" name="seksieId" class="form-control" required>
+							<h4>Are you sure?</h4>
+							<p>Are you sure that you want to delete this data?</p>
+						</div>
+					</div>
+				</div>
+				<footer class="panel-footer">
+					<div class="row">
+						<div class="col-md-12 text-right">
+							<button type="submit" class="btn btn-primary modal-confirm">Hapus</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+						</div>
+					</div>
+				</footer>
+			</section>
+		</div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal Update Product-->
+<form id="add-row-form" action="<?php echo site_url('lab/welcome/update_laboratory_ctrlr');?>" method="post">
+    <div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        	<section class="panel">
+				<header class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h2 class="panel-title">Form Edit Laboratorium</h2>
+				</header>
+				<div class="panel-body">
+					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+						<div class="form-group mt-lg">
+							<label class="col-sm-3 control-label" style="">Seksi ID</label>
+							<div class="col-sm-9">
+								<input type="number" name="seksieId" class="form-control" placeholder="Contoh : 1" readonly/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Nama</label>
+							<div class="col-sm-9">
+								<input type="text" name="nama" class="form-control" placeholder="Contoh : Logam" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Kode</label>
+							<div class="col-sm-9">
+								<input type="text" name="kode" class="form-control" placeholder="Contoh : A23" />
+							</div>
+						</div>
+					</form>
+				</div>
+				<footer class="panel-footer">
+					<div class="row">
+						<div class="col-md-12 text-right">
+							<button type="submit" class="btn btn-primary modal-confirm">Edit</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+						</div>
+					</div>
+				</footer>
+			</section>
         </div>
     </div>
 </form>
@@ -132,29 +207,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               	});
           	},
             
-            "oLanguage": {
-            	"sProcessing": "loading..."
+            oLanguage: {
+            	sProcessing: "loading..."
           	},
 
-            "processing": true,
+            processing: true,
             
-            "serverSide": true,
+            serverSide: true,
             
-            "ajax": {"url": "<?php echo base_url();?>index.php/lab/welcome/get_all_laboratory_json_ctrlr", "type": "POST"},
+            ajax: {"url": "<?php echo base_url();?>index.php/lab/welcome/get_all_laboratory_json_ctrlr", "type": "POST"},
             
-            "columns": [
+            columns: [
                 {"data": "seksieId"},
                 {"data": "nama"},
                 {"data": "kode"},
                 {"data": "view"}
             ],
 
-            "columnDefs": [{
-				"targets": 3,
-				"orderable": false
+            columnDefs: [{
+				targets: 3,
+				orderable: false
 			}],
             
-            "order": [[0, 'asc']],
+            order: [[0, 'asc']],
 
           	rowCallback: function(row, data, iDisplayIndex) {
               	var info = this.fnPagingInfo();
@@ -164,10 +239,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           	}
       	});
 
+      	 $('#table_laboratory').on('click','.edit_record',function(){
+            var idaja=$(this).data('idaja');
+            var namaaja=$(this).data('namaaja');
+            var kodeaja=$(this).data('kodeaja');
+            
+            $('#modal_edit').modal('show');
+            
+            $('[name="seksieId"]').val(idaja);
+            $('[name="nama"]').val(namaaja);
+            $('[name="kode"]').val(kodeaja);
+      	});
+
       	$('#table_laboratory').on('click','.delete_record',function(){
-            var seksieId=$(this).data('seksieId');
+            var idaja=$(this).data('idaja');
             $('#modal_delete').modal('show');
-            $('[name="seksieId"]').val(seksieId);
+            $('[name="seksieId"]').val(idaja);
       	});
 
 	});
