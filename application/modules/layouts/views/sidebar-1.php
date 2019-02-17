@@ -22,9 +22,27 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
-								<i class="fa fa-envelope" aria-hidden="true"></i>
+							<a href="<?php echo base_url('index.php/lab') ?>">
+								<i class="fa fa-building-o" aria-hidden="true"></i>
 								<span>Laboratorium</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('index.php/sampel'); ?>">
+								<i class="fa fa-cube" aria-hidden="true"></i>
+								<span>Sampel</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('index.php/parameter'); ?>">
+								<i class="fa fa-tag" aria-hidden="true"></i>
+								<span>Parameter</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('index.php/lingkup'); ?>">
+								<i class="fa fa-tasks" aria-hidden="true"></i>
+								<span>Lingkup</span>
 							</a>
 						</li>
 						<li class="nav-parent">

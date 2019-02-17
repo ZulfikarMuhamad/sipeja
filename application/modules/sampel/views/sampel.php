@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <section role="main" class="content-body">
 	<header class="page-header" style="float: right;">
 		<!-- Head title of page -->
-		<h2 style="float: right;"> Laboratorium </h2>
+		<h2 style="float: right;"> Sampel </h2>
 	</header>
 
 	<!-- start: page -->
@@ -19,24 +19,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 			<div class="table-responsive">
-				<table class="table table-bordered table-striped" width="100%" id="table_laboratory">
+				<table class="table table-bordered table-striped" width="100%" id="table_sampel">
 					<thead>
 						<tr>
-							<th>Seksie Id</th>
 							<th>Nama</th>
-							<th>Kode(s)</th>
 							<th>Status</th>
-							<th>Akreditasi</th>
-							<th>Personel</th>
-							<th>Akomodasi</th>
-							<th>Beban</th>
-							<th>Peralatan</th>
-							<th>Metode</th>
-							<th>Biaya</th>
-							<th>KabidId</th>
-							<th>KasieId</th>
-							<th>KoordId</th>
-							<th>AdminId</th>
+							<th>SpmJumlah</th>
+							<th>SpmHari</th>
+							<th>Kan</th>
 							<th>Alasan</th>
 							<th>Actions</th>
 						</tr>	
@@ -50,32 +40,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </section>
 
 <!-- Modal Add Product-->
-<form id="add-row-form" action="<?php echo site_url('lab/welcome/insert_laboratory_ctrlr');?>" method="post">
+<form id="add-row-form" action="<?php echo site_url('sampel/sampel/insert_sampel_ctrlr');?>" method="post">
     <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         	<section class="panel">
 				<header class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="panel-title">Form Tambah Laboratorium</h2>
+					<h2 class="panel-title">Form Tambah Sampel</h2>
 				</header>
 				<div class="panel-body">
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-						<div class="form-group mt-lg">
-							<label class="col-sm-3 control-label" style="">Seksi ID</label>
-							<div class="col-sm-9">
-								<input type="number" name="input_seksieId" class="form-control" placeholder="Contoh : 1" required/>
-							</div>
-						</div>
+						
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nama</label>
 							<div class="col-sm-9">
-								<input type="text" name="input_name" class="form-control" placeholder="Contoh : Logam" required/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Kode</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_code" class="form-control" placeholder="Contoh : A23" />
+								<input type="text" name="input_nama" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
 						</div>
 						<!-- Form tambahan modal *add* -->
@@ -86,45 +65,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Akreditasi</label>
+							<label class="col-sm-3 control-label">SpmJumlah</label>
 							<div class="col-sm-9">
-								<input type="text" name="input_akreditasi" class="form-control" placeholder="Contoh : 1" />
+								<input type="text" name="input_spmjumlah" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Personel</label>
+							<label class="col-sm-3 control-label">SpmHari</label>
 							<div class="col-sm-9">
-								<input type="text" name="input_personel" class="form-control" placeholder="Contoh : 1" />
+								<input type="text" name="input_spmhari" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Akomodasi</label>
+							<label class="col-sm-3 control-label">Kan</label>
 							<div class="col-sm-9">
-								<input type="text" name="input_akomodasi" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Beban</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_beban" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Peralatan</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_peralatan" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Metode</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_metode" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Biaya</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_biaya" class="form-control" placeholder="Contoh : 1" />
+								<input type="text" name="input_kan" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -149,8 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </form>
 
 <!-- Modal Delete Product-->
-<form id="add-row-form" action="<?php echo base_url();?>index.php/lab/welcome/delete_labo
-	ratory_ctrlr" method="post">
+<form id="add-row-form" action="<?php echo base_url();?>index.php/sampel/sampel/delete_sampel_ctrlr" method="post">
     <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
 			<section class="panel">
@@ -181,110 +135,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </form>
 
 <!-- Modal Update Product-->
-<form id="add-row-form" action="<?php echo site_url('lab/welcome/update_laboratory_ctrlr');?>" method="post">
+<form id="add-row-form" action="<?php echo site_url('sampel/sampel/update_sampel_ctrlr');?>" method="post">
     <div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         	<section class="panel">
 				<header class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="panel-title">Form Edit Laboratorium</h2>
+					<h2 class="panel-title">Form Edit Sampel</h2>
 				</header>
 				<div class="panel-body">
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-						<div class="form-group mt-lg">
-							<label class="col-sm-3 control-label" style="">Seksi ID</label>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Id</label>
 							<div class="col-sm-9">
-								<input type="number" name="seksieId" class="form-control" placeholder="Contoh : 1" readonly/>
+								<input type="text" name="edit_id" class="form-control" placeholder="Contoh : Logam" disabled />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nama</label>
 							<div class="col-sm-9">
-								<input type="text" name="nama" class="form-control" placeholder="Contoh : Logam" required/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Kode</label>
-							<div class="col-sm-9">
-								<input type="text" name="kode" class="form-control" placeholder="Contoh : A23" />
+								<input type="text" name="edit_nama" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Status</label>
 							<div class="col-sm-9">
-								<input type="text" name="status" class="form-control" placeholder="Contoh : 1" />
+								<input type="text" name="edit_status" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Akreditasi</label>
+							<label class="col-sm-3 control-label">SpmJumlah</label>
 							<div class="col-sm-9">
-								<input type="text" name="akreditasi" class="form-control" placeholder="Contoh : 1" />
+								<input type="text" name="edit_spmjumlah" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Personel</label>
+							<label class="col-sm-3 control-label">SpmHari</label>
 							<div class="col-sm-9">
-								<input type="text" name="personel" class="form-control" placeholder="Contoh : 1" />
+								<input type="text" name="edit_spmhari" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Akomodasi</label>
+							<label class="col-sm-3 control-label">Kan</label>
 							<div class="col-sm-9">
-								<input type="text" name="akomodasi" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Beban</label>
-							<div class="col-sm-9">
-								<input type="text" name="beban" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Peralatan</label>
-							<div class="col-sm-9">
-								<input type="text" name="peralatan" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Metode</label>
-							<div class="col-sm-9">
-								<input type="text" name="metode" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Biaya</label>
-							<div class="col-sm-9">
-								<input type="text" name="biaya" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">KabidId</label>
-							<div class="col-sm-9">
-								<input type="text" name="kabidId" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">KasieId</label>
-							<div class="col-sm-9">
-								<input type="text" name="kasieId" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">KoordId</label>
-							<div class="col-sm-9">
-								<input type="text" name="koordId" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">AdminId</label>
-							<div class="col-sm-9">
-								<input type="text" name="adminId" class="form-control" placeholder="Contoh : 1" />
+								<input type="text" name="edit_kan" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Alasan</label>
 							<div class="col-sm-9">
-								<textarea rows="3" name="alasan" class="form-control"></textarea>
+								<textarea rows="3" name="edit_alasan" class="form-control"></textarea>
 							</div>
 						</div>
 					</form>
@@ -344,10 +244,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           	};
       	};
  
-      	var table = $("#table_laboratory").dataTable({
+      	var table = $("#table_sampel").dataTable({
           	initialize: function() {
               	var api = this.api();
-              	$('#table_laboratory_filter input')
+              	$('#table_sampel_filter input')
                   	.off('.DT')
                   	.on('input.DT', function() {
                     	api.search(this.value).draw();
@@ -362,30 +262,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             processing: true,
             serverSide: true,
             
-            ajax: {"url": "<?php echo base_url();?>index.php/lab/welcome/get_all_laboratory_json_ctrlr", "type": "POST"},
+            ajax: {"url": "<?php echo base_url();?>index.php/sampel/sampel/get_all_sampel_json_ctrlr", "type": "POST"},
             
             columns: [
-                {"data": "seksieId"},
                 {"data": "nama"},
-                {"data": "kode"},
                 {"data": "status"},
-                {"data": "akreditasi"},
-                {"data": "personel"},
-                {"data": "akomodasi"},
-                {"data": "beban"},
-                {"data": "peralatan"},
-                {"data": "metode"},
-                {"data": "biaya"},
-                {"data": "kabidId"},
-                {"data": "kasieId"},
-                {"data": "koordId"},
-                {"data": "adminId"},
+                {"data": "spmjumlah"},
+                {"data": "spmhari"},
+                {"data": "kan"},
                 {"data": "alasan"},
                 {"data": "view"}
             ],
 
             columnDefs: [{
-				targets: 16,
+				targets: 6,
 				orderable: false
 			}],
             
@@ -399,45 +289,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           	}
       	});
 
-      	 $('#table_laboratory').on('click','.edit_record',function(){
-            var sekidaja=$(this).data('sekidaja');
+      	 $('#table_sampel').on('click','.edit_record',function(){
+            var idaja=$(this).data('idaja');
             var namaaja=$(this).data('namaaja');
-            var kodeaja=$(this).data('kodeaja');
             var statusaja=$(this).data('statusaja');
-            var akreditasiaja=$(this).data('akreditasiaja');
-            var personelaja=$(this).data('personelaja');
-            var akomodasiaja=$(this).data('akomodasiaja');
-            var bebanaja=$(this).data('bebanaja');
-            var peralatanaja=$(this).data('peralatanaja');
-            var metodeaja=$(this).data('metodeaja');
-            var biayaaja=$(this).data('biayaaja');
-            var kabidIdaja=$(this).data('kabidIdaja');
-            var kasieIdaja=$(this).data('kasieIdaja');
-            var koordIdaja=$(this).data('koordIdaja');
-            var adminIdaja=$(this).data('adminIdaja');
+            var spmjumlahaja=$(this).data('spmjumlahaja');
+            var spmhariaja=$(this).data('spmhariaja');
+            var kanaja=$(this).data('kanaja');
             var alasanaja=$(this).data('alasanaja');
             
             $('#modal_edit').modal('show');
             
-            $('[name="seksieId"]').val(sekidaja);
-            $('[name="nama"]').val(namaaja);
-            $('[name="kode"]').val(kodeaja);
-            $('[name="status"]').val(statusaja);
-            $('[name="akreditasi"]').val(akreditasiaja);
-            $('[name="personel"]').val(personelaja);
-            $('[name="akomodasi"]').val(akomodasiaja);
-            $('[name="beban"]').val(bebanaja);
-            $('[name="peralatan"]').val(peralatanaja);
-            $('[name="metode"]').val(metodeaja);
-            $('[name="biaya"]').val(biayaaja);
-            $('[name="kabidId"]').val(kabidIdaja);
-            $('[name="kasieId"]').val(kasieIdaja);
-            $('[name="koordId"]').val(koordIdaja);
-            $('[name="adminId"]').val(adminIdaja);
-            $('[name="alasan"]').val(alasanaja);
+
+            $('[name="edit_id"]').val(idaja);
+            $('[name="edit_nama"]').val(namaaja);
+            $('[name="edit_status"]').val(statusaja);
+            $('[name="edit_spmjumlah"]').val(spmjumlahaja);
+            $('[name="edit_spmhari"]').val(spmhariaja);
+            $('[name="edit_kan"]').val(kanaja);
+            $('[name="edit_alasan"]').val(alasanaja);
       	});
 
-      	$('#table_laboratory').on('click','.delete_record',function(){
+      	$('#table_sampel').on('click','.delete_record',function(){
             var idaja=$(this).data('idaja');
             $('#modal_delete').modal('show');
             $('[name="id"]').val(idaja);

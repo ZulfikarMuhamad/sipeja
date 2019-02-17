@@ -21,7 +21,7 @@
 
 		<!-- Specific Page Vendor CSS -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/select2/select2.css'); ?>" />
-		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/jquery-datatables-bs3/assets/css/datatables.css'); ?>" />
+		<link rel="stylesheet" href="<?php echo base_url('assets/datatables/datatables.min.css'); ?>" />
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/stylesheets/theme.css'); ?>" />

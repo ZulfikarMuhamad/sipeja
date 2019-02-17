@@ -8,7 +8,7 @@
 
 		options: {
 			addButton: '#addToTable',
-			table: '#datatable-editable',
+			table: '#table_laboratory',
 			dialog: {
 				wrapper: '#dialog',
 				cancelButton: '#dialogCancel',
@@ -38,6 +38,7 @@
 
 		build: function() {
 			this.datatable = this.$table.DataTable({
+				
 				aoColumns: [
 					null,
 					null,
