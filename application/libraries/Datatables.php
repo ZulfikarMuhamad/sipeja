@@ -30,7 +30,6 @@
     private $or_where       = array();
     private $where_in       = array();
     private $like           = array();
-    private $or_like        = array();
     private $filter         = array();
     private $add_columns    = array();
     private $edit_columns   = array();
@@ -157,7 +156,7 @@
       $this->ci->db->or_where($key_condition, $val, $backtick_protect);
       return $this;
     }
-    
+
     /**
     * Generates the WHERE IN portion of the query
     *
@@ -166,10 +165,10 @@
     * @param bool $backtick_protect
     * @return mixed
     */
-    public function where_in($key_condition, $val = NULL)
+    public function where_in($key_condition, $val = NULL, $backtick_protect = TRUE)
     {
-      $this->where_in[] = array($key_condition, $val);
-      $this->ci->db->where_in($key_condition, $val);
+      $this->where_in[] = array($key_condition, $val, $backtick_protect);
+      $this->ci->db->where_in($key_condition, $val, $backtick_protect);
       return $this;
     }
 
@@ -195,25 +194,10 @@
     * @param bool $backtick_protect
     * @return mixed
     */
-    public function like($key_condition, $val = NULL, $side = 'both')
+    public function like($key_condition, $val = NULL, $backtick_protect = TRUE)
     {
-      $this->like[] = array($key_condition, $val, $side);
-      $this->ci->db->like($key_condition, $val, $side);
-      return $this;
-    }
-
-    /**
-    * Generates the OR %LIKE% portion of the query
-    *
-    * @param mixed $key_condition
-    * @param string $val
-    * @param bool $backtick_protect
-    * @return mixed
-    */
-    public function or_like($key_condition, $val = NULL, $side = 'both')
-    {
-      $this->or_like[] = array($key_condition, $val, $side);
-      $this->ci->db->or_like($key_condition, $val, $side);
+      $this->like[] = array($key_condition, $val, $backtick_protect);
+      $this->ci->db->like($key_condition, $val, $backtick_protect);
       return $this;
     }
 
@@ -227,7 +211,7 @@
     */
     public function add_column($column, $content, $match_replacement = NULL)
     {
-      $this->add_columns[$column] = array('content' => $content, 'replacement' => $this->explode(',', $match_replacement));
+      $this->add_columns[$column] = array('content' => $content, 'replacement' => $this->explode(',', $match_replacement)); 
       return $this;
     }
 
@@ -266,13 +250,14 @@
     * @return string
     */
     public function generate($output = 'json', $charset = 'UTF-8')
-    {
-      if(strtolower($output) == 'json')
+    {   
+      if(strtolower($output) == 'json') 
+      {
         $this->get_paging();
-
+      }
       $this->get_ordering();
-      $this->get_filtering();
-      return $this->produce_output(strtolower($output), strtolower($charset));
+      $this->get_filtering(); 
+      return $this->produce_output(strtolower($output), strtolower($charset)); 
     }
 
     /**
@@ -282,8 +267,9 @@
     */
     private function get_paging()
     {
-      $iStart = $this->ci->input->post('start');
-      $iLength = $this->ci->input->post('length');
+
+      $iStart = $this->ci->input->post('iDisplayStart');
+      $iLength = $this->ci->input->post('iDisplayLength');
 
       if($iLength != '' && $iLength != '-1')
         $this->ci->db->limit($iLength, ($iStart)? $iStart : 0);
@@ -296,17 +282,16 @@
     */
     private function get_ordering()
     {
-
-      $Data = $this->ci->input->post('columns');
-
-
-      if ($this->ci->input->post('order'))
-        foreach ($this->ci->input->post('order') as $key)
-          if($this->check_cType())
-            $this->ci->db->order_by($Data[$key['column']]['data'], $key['dir']);
-          else
-            $this->ci->db->order_by($this->columns[$key['column']] , $key['dir']);
-
+        if($this->ci->input->post('iSortCol_0') || $this->ci->input->post('iSortCol_0') == 0)
+        {   
+            for($i = 0; $i < intval($this->ci->input->post('iSortingCols')); $i++)
+            {
+                if($this->ci->input->post('bSortable_' . intval($this->ci->input->post('iSortCol_' . $i))) == "true")
+                {
+                    $this->ci->db->order_by($this->ci->input->post('mDataProp_' . $this->ci->input->post('iSortCol_' . $i)), $this->ci->input->post('sSortDir_' . $i));
+                }
+            }
+        }
     }
 
     /**
@@ -316,32 +301,23 @@
     */
     private function get_filtering()
     {
+        $sColumns = explode(",", $this->ci->input->post('sColumns'));
+    if ($this->ci->input->post('sSearch') && $this->ci->input->post('sSearch') != "" )
+    { 
+            $search_terms = explode("|", $this->ci->input->post('sSearch'));
 
-      $mColArray = $this->ci->input->post('columns');
+            for ( $i=0 ; $i < $this->ci->input->post('iColumns'); $i++ )
+            {
+                if($this->ci->input->post('bSearchable_' . $i) == "true" && strlen($sColumns[$i]) > 0)
+                {
+                    foreach($search_terms as $key => $ele)
+                    {
+                        $this->ci->db->or_like($sColumns[$i], $ele); 
+                    }
+                }
+            } 
+    }
 
-      $sWhere = '';
-      $search = $this->ci->input->post('search');
-      $sSearch = $this->ci->db->escape_like_str(trim($search['value']));
-      $columns = array_values(array_diff($this->columns, $this->unset_columns));
-
-      if($sSearch != '')
-        for($i = 0; $i < count($mColArray); $i++)
-          if ($mColArray[$i]['searchable'] == 'true' && !array_key_exists($mColArray[$i]['data'], $this->add_columns))
-            if($this->check_cType())
-              $sWhere .= $this->select[$mColArray[$i]['data']] . " LIKE '%" . $sSearch . "%' OR ";
-            else
-              $sWhere .= $this->select[$this->columns[$i]] . " LIKE '%" . $sSearch . "%' OR ";
-
-
-      $sWhere = substr_replace($sWhere, '', -3);
-
-      if($sWhere != '')
-        $this->ci->db->where('(' . $sWhere . ')');
-
-      // TODO : sRangeSeparator
-
-      foreach($this->filter as $val)
-        $this->ci->db->where($val[0], $val[1], $val[2]);
     }
 
     /**
@@ -350,7 +326,7 @@
     * @return mixed
     */
     private function get_display_result()
-    {
+    { 
       return $this->ci->db->get($this->table);
     }
 
@@ -431,18 +407,15 @@
 
       foreach($this->or_where as $val)
         $this->ci->db->or_where($val[0], $val[1], $val[2]);
-        
+
       foreach($this->where_in as $val)
-        $this->ci->db->where_in($val[0], $val[1]);
+        $this->ci->db->where_in($val[0], $val[1], $val[2]);
 
       foreach($this->group_by as $val)
         $this->ci->db->group_by($val);
 
       foreach($this->like as $val)
         $this->ci->db->like($val[0], $val[1], $val[2]);
-
-      foreach($this->or_like as $val)
-        $this->ci->db->or_like($val[0], $val[1], $val[2]);
 
       if(strlen($this->distinct) > 0)
       {
@@ -464,9 +437,6 @@
     private function exec_replace($custom_val, $row_data)
     {
       $replace_string = '';
-      
-      // Go through our array backwards, else $1 (foo) will replace $11, $12 etc with foo1, foo2 etc
-      $custom_val['replacement'] = array_reverse($custom_val['replacement'], true);
 
       if(isset($custom_val['replacement']) && is_array($custom_val['replacement']))
       {
@@ -626,8 +596,8 @@
         return '{' . join(',', $json) . '}';
       }
     }
-	
-	 /**
+
+     /**
      * returns the sql statement of the last query run
      * @return type
      */

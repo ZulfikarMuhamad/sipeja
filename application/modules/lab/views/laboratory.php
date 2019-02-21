@@ -22,9 +22,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table class="table table-bordered table-striped" width="100%" id="table_laboratory">
 					<thead>
 						<tr>
+							<th>Id</th>
 							<th>Seksie Id</th>
 							<th>Nama</th>
-							<th>Kode(s)</th>
+							<th>Kode</th>
 							<th>Status</th>
 							<th>Akreditasi</th>
 							<th>Personel</th>
@@ -33,12 +34,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<th>Peralatan</th>
 							<th>Metode</th>
 							<th>Biaya</th>
-							<th>KabidId</th>
-							<th>KasieId</th>
-							<th>KoordId</th>
-							<th>AdminId</th>
+							<th>Kabid Id</th>
+							<th>Kasie Id</th>
+							<th>Koord Id</th>
+							<th>Admin Id</th>
 							<th>Alasan</th>
-							<th>Actions</th>
+							<th>Action</th>
 						</tr>	
 					</thead>
 				</table>
@@ -192,96 +193,102 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="panel-body">
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 						<div class="form-group mt-lg">
-							<label class="col-sm-3 control-label" style="">Seksi ID</label>
+							<label class="col-sm-3 control-label" style="">id</label>
 							<div class="col-sm-9">
-								<input type="number" name="seksieId" class="form-control" placeholder="Contoh : 1" readonly/>
+								<input type="number" name="id" class="form-control" placeholder="Contoh : 1" readonly/>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
+							<label class="col-sm-3 control-label" style="">Seksi ID</label>
+							<div class="col-sm-9">
+								<input type="number" name="seksieId" class="form-control" placeholder="Contoh : 1"/>
+							</div>
+						</div>
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Nama</label>
 							<div class="col-sm-9">
 								<input type="text" name="nama" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Kode</label>
 							<div class="col-sm-9">
 								<input type="text" name="kode" class="form-control" placeholder="Contoh : A23" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Status</label>
 							<div class="col-sm-9">
 								<input type="text" name="status" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Akreditasi</label>
 							<div class="col-sm-9">
 								<input type="text" name="akreditasi" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Personel</label>
 							<div class="col-sm-9">
 								<input type="text" name="personel" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Akomodasi</label>
 							<div class="col-sm-9">
 								<input type="text" name="akomodasi" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Beban</label>
 							<div class="col-sm-9">
 								<input type="text" name="beban" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Peralatan</label>
 							<div class="col-sm-9">
 								<input type="text" name="peralatan" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Metode</label>
 							<div class="col-sm-9">
 								<input type="text" name="metode" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Biaya</label>
 							<div class="col-sm-9">
 								<input type="text" name="biaya" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">KabidId</label>
 							<div class="col-sm-9">
 								<input type="text" name="kabidId" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">KasieId</label>
 							<div class="col-sm-9">
 								<input type="text" name="kasieId" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">KoordId</label>
 							<div class="col-sm-9">
 								<input type="text" name="koordId" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">AdminId</label>
 							<div class="col-sm-9">
 								<input type="text" name="adminId" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mt-lg">
 							<label class="col-sm-3 control-label">Alasan</label>
 							<div class="col-sm-9">
 								<textarea rows="3" name="alasan" class="form-control"></textarea>
@@ -365,6 +372,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ajax: {"url": "<?php echo base_url();?>index.php/lab/welcome/get_all_laboratory_json_ctrlr", "type": "POST"},
             
             columns: [
+            	{"data": "id"},
                 {"data": "seksieId"},
                 {"data": "nama"},
                 {"data": "kode"},
@@ -385,7 +393,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ],
 
             columnDefs: [{
-				targets: 16,
+				targets: 17,
 				orderable: false
 			}],
             
@@ -400,47 +408,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       	});
 
       	 $('#table_laboratory').on('click','.edit_record',function(){
-            var sekidaja=$(this).data('sekidaja');
-            var namaaja=$(this).data('namaaja');
-            var kodeaja=$(this).data('kodeaja');
-            var statusaja=$(this).data('statusaja');
-            var akreditasiaja=$(this).data('akreditasiaja');
-            var personelaja=$(this).data('personelaja');
-            var akomodasiaja=$(this).data('akomodasiaja');
-            var bebanaja=$(this).data('bebanaja');
-            var peralatanaja=$(this).data('peralatanaja');
-            var metodeaja=$(this).data('metodeaja');
-            var biayaaja=$(this).data('biayaaja');
-            var kabidIdaja=$(this).data('kabidIdaja');
-            var kasieIdaja=$(this).data('kasieIdaja');
-            var koordIdaja=$(this).data('koordIdaja');
-            var adminIdaja=$(this).data('adminIdaja');
-            var alasanaja=$(this).data('alasanaja');
+            var idview=$(this).data('idview');
+            var seksieidview=$(this).data('seksieidview');
+            var namaview=$(this).data('namaview');
+            var kodeview=$(this).data('kodeview');
+            var statusview=$(this).data('statusview');
+            var akreditasiview=$(this).data('akreditasiview');
+            var personelview=$(this).data('personelview');
+            var akomodasiview=$(this).data('akomodasiview');
+            var bebanview=$(this).data('bebanview');
+            var peralatanview=$(this).data('peralatanview');
+            var metodeview=$(this).data('metodeview');
+            var biayaview=$(this).data('biayaview');
+            var kabididview=$(this).data('kabididview');
+            var kasieidview=$(this).data('kasieidview');
+            var koordidview=$(this).data('koordidview');
+            var adminidview=$(this).data('adminidview');
+            var alasanview=$(this).data('alasanview');
             
             $('#modal_edit').modal('show');
             
-            $('[name="seksieId"]').val(sekidaja);
-            $('[name="nama"]').val(namaaja);
-            $('[name="kode"]').val(kodeaja);
-            $('[name="status"]').val(statusaja);
-            $('[name="akreditasi"]').val(akreditasiaja);
-            $('[name="personel"]').val(personelaja);
-            $('[name="akomodasi"]').val(akomodasiaja);
-            $('[name="beban"]').val(bebanaja);
-            $('[name="peralatan"]').val(peralatanaja);
-            $('[name="metode"]').val(metodeaja);
-            $('[name="biaya"]').val(biayaaja);
-            $('[name="kabidId"]').val(kabidIdaja);
-            $('[name="kasieId"]').val(kasieIdaja);
-            $('[name="koordId"]').val(koordIdaja);
-            $('[name="adminId"]').val(adminIdaja);
-            $('[name="alasan"]').val(alasanaja);
+            $('[name="id"]').val(idview);
+            $('[name="seksieId"]').val(seksieidview);
+            $('[name="nama"]').val(namaview);
+            $('[name="kode"]').val(kodeview);
+            $('[name="status"]').val(statusview);
+            $('[name="akreditasi"]').val(akreditasiview);
+            $('[name="personel"]').val(personelview);
+            $('[name="akomodasi"]').val(akomodasiview);
+            $('[name="beban"]').val(bebanview);
+            $('[name="peralatan"]').val(peralatanview);
+            $('[name="metode"]').val(metodeview);
+            $('[name="biaya"]').val(biayaview);
+            $('[name="kabidId"]').val(kabididview);
+            $('[name="kasieId"]').val(kasieidview);
+            $('[name="koordId"]').val(koordidview);
+            $('[name="adminId"]').val(adminidview);
+            $('[name="alasan"]').val(alasanview);
       	});
 
       	$('#table_laboratory').on('click','.delete_record',function(){
-            var idaja=$(this).data('idaja');
+            var idview=$(this).data('idview');
             $('#modal_delete').modal('show');
-            $('[name="id"]').val(idaja);
+            $('[name="id"]').val(idview);
       	});
 
 	});

@@ -16,12 +16,12 @@ class crud_laboratory_model extends CI_Model {
       	$this->datatables->add_column(
       		'view', 
       		
-      		'<a href="javascript:void(0);" class="edit_record" data-idaja="$1" data-sekidaja="$2" data-namaaja="$3" data-kodeaja="$4" data-statusaja="$5" data-akreditasiaja="$6" data-personelaja="$7" data-akomodasiaja="$8" data-bebanaja="$9" data-peralatanaja="$10" data-metodeaja="$11" data-biayaaja="$12" data-kabidIdaja="$13" data-kasieIdaja="$14" data-koordIdaja="$15" data-adminIdaja="$16" data-alasanaja="$17">
+      		'<a href="javascript:void(0);" class="edit_record" data-idview="$1" data-seksieidview="$2" data-namaview="$3" data-kodeview="$4" data-statusview="$5" data-akreditasiview="$6" data-personelview="$7" data-akomodasiview="$8" data-bebanview="$9" data-peralatanview="$10" data-metodeview="$11" data-biayaview="$12" data-kabididview="$13" data-kasieidview="$14" data-koordidview="$15" data-adminidview="$16" data-alasanview="$17">
       			<i class="fa fa-pencil" style="color: #777777">
       			</i>
       		</a>
       		
-      		<a href="javascript:void(0);" class="delete_record" data-idaja="$1">
+      		<a href="javascript:void(0);" class="delete_record" data-idview="$1">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',
@@ -56,12 +56,26 @@ class crud_laboratory_model extends CI_Model {
 
   	//update data method
   	function update_laboratory(){
-      	$seksieId=$this->input->post('seksieId');
+      	$id=$this->input->post('id');
       	$data=array(
+        	'seksieId'	=> $this->input->post('seksieId'),
         	'nama'	=> $this->input->post('nama'),
-        	'kode'	=> $this->input->post('kode')
+          'kode'  => $this->input->post('kode'),
+          'status'  => $this->input->post('status'),
+          'akreditasi'  => $this->input->post('akreditasi'),
+          'personel'  => $this->input->post('personel'),
+          'akomodasi'  => $this->input->post('akomodasi'),
+          'beban'  => $this->input->post('beban'),
+          'peralatan'  => $this->input->post('peralatan'),
+          'metode'  => $this->input->post('metode'),
+          'biaya'  => $this->input->post('biaya'),
+          'kabidId'  => $this->input->post('kabidId'),
+          'kasieId'  => $this->input->post('kasieId'),
+          'koordId'  => $this->input->post('koordId'),
+          'adminId'  => $this->input->post('adminId'),
+          'alasan'  => $this->input->post('alasan')
       	);
-      	$this->db->where('seksieId',$seksieId);
+      	$this->db->where('id',$id);
       	$result=$this->db->update('lab', $data);
       	return $result;
   	}
