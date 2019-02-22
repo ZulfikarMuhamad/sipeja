@@ -21,112 +21,161 @@
 								<span>Dashboard</span>
 							</a>
 						</li>
-						<li>
-							<a href="<?php echo base_url('index.php/lab') ?>">
-								<i class="fa fa-building-o" aria-hidden="true"></i>
-								<span>Laboratorium</span>
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-money" aria-hidden="true"></i>
+								<span>Order</span>
 							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="#">
+										 Order
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										 Daftar Harga
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										 Penawaran Order
+									</a>
+								</li>
+							</ul>
 						</li>
-						<li>
-							<a href="<?php echo base_url('index.php/sampel'); ?>">
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-users" aria-hidden="true"></i>
+								<span>Pelanggan</span>
+							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="#">
+										 Pelanggan
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										 Kontrak
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-parent">
+							<a>
 								<i class="fa fa-cube" aria-hidden="true"></i>
 								<span>Sampel</span>
 							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="<?php echo base_url('index.php/metode_uji'); ?>">
+										 Metode Uji
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url('index.php/parameter'); ?>">
+										 Parameter
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url('index.php/sampel'); ?>">
+										 Sampel
+									</a>
+								</li>
+							</ul>
 						</li>
-						<li>
-							<a href="<?php echo base_url('index.php/parameter'); ?>">
-								<i class="fa fa-tag" aria-hidden="true"></i>
-								<span>Parameter</span>
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-building-o" aria-hidden="true"></i>
+								<span>Laboratorium</span>
 							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="#">
+										 Bidang
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										 Seksie
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url('index.php/lingkup'); ?>">
+										 Lingkup-Lab
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url('index.php/lab'); ?>">
+										 Laboratorium
+									</a>
+								</li>
+							</ul>
 						</li>
 						<li>
-							<a href="<?php echo base_url('index.php/lingkup'); ?>">
-								<i class="fa fa-tasks" aria-hidden="true"></i>
-								<span>Lingkup</span>
+							<a href="#">
+								<i class="fa fa-book" aria-hidden="true"></i>
+								<span>Buku Kas Umum</span>
 							</a>
 						</li>
 						<li class="nav-parent">
 							<a>
-								<i class="fa fa-copy" aria-hidden="true"></i>
-								<span>Pages</span>
+								<i class="fa fa-bar-chart-o" aria-hidden="true"></i>
+								<span>Laporan</span>
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="pages-signup.html">
-										 Sign Up
+									<a href="#">
+										 Laporan Administrasi
 									</a>
 								</li>
 								<li>
-									<a href="pages-signin.html">
-										 Sign In
+									<a href="#">
+										 Laporan Keuangan
 									</a>
 								</li>
 								<li>
-									<a href="pages-recover-password.html">
-										 Recover Password
+									<a href="#">
+										 Laporan Produksi
 									</a>
 								</li>
 								<li>
-									<a href="pages-lock-screen.html">
-										 Locked Screen
-									</a>
-								</li>
-								<li>
-									<a href="pages-user-profile.html">
-										 User Profile
-									</a>
-								</li>
-								<li>
-									<a href="pages-session-timeout.html">
-										 Session Timeout
-									</a>
-								</li>
-								<li>
-									<a href="pages-calendar.html">
-										 Calendar
-									</a>
-								</li>
-								<li>
-									<a href="pages-timeline.html">
-										 Timeline
-									</a>
-								</li>
-								<li>
-									<a href="pages-media-gallery.html">
-										 Media Gallery
-									</a>
-								</li>
-								<li>
-									<a href="pages-invoice.html">
-										 Invoice
-									</a>
-								</li>
-								<li>
-									<a href="pages-blank.html">
-										 Blank Page
-									</a>
-								</li>
-								<li>
-									<a href="pages-404.html">
-										 404
-									</a>
-								</li>
-								<li>
-									<a href="pages-500.html">
-										 500
-									</a>
-								</li>
-								<li>
-									<a href="pages-log-viewer.html">
-										 Log Viewer
-									</a>
-								</li>
-								<li>
-									<a href="pages-search-results.html">
-										 Search Results
+									<a href="#">
+										 Log Book
 									</a>
 								</li>
 							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-archive" aria-hidden="true"></i>
+								<span>Dokumen</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-user" aria-hidden="true"></i>
+								<span>user</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-file-text-o" aria-hidden="true"></i>
+								<span>Log</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-cogs" aria-hidden="true"></i>
+								<span>Pengaturan</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-tasks" aria-hidden="true"></i>
+								<span>Antrian</span>
+							</a>
 						</li>
 				</nav>
 			</div>

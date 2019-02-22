@@ -24,7 +24,12 @@ class sampelModel extends CI_Model {
       		<a href="javascript:void(0);" class="delete_record" data-idaja="$1">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
-      		</a>',
+      		</a>
+
+          <a href="javascript:void(0);" class="detail_record" data-idaja="$1">
+            <i class="fa fa-trash-o" style="color: #777777">
+            </i>
+          </a>',
 
       		'id,nama,status,spmjumlah,spmhari,kan,alasan');
       	return $this->datatables->generate();

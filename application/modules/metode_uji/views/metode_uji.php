@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <section role="main" class="content-body">
 	<header class="page-header" style="float: right;">
 		<!-- Head title of page -->
-		<h2 style="float: right;"> Sampel </h2>
+		<h2 style="float: right;"> metode </h2>
 	</header>
 
 	<!-- start: page -->
@@ -24,10 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>
 							<th>Nama</th>
 							<th>Status</th>
-							<th>SpmJumlah</th>
-							<th>SpmHari</th>
-							<th>Kan</th>
-							<th>Alasan</th>
+							<th>Keterangan</th>
 							<th>Actions</th>
 						</tr>	
 					</thead>
@@ -40,13 +37,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </section>
 
 <!-- Modal Add Product-->
-<form id="add-row-form" action="<?php echo site_url('sampel/sampel/insert_sampel_ctrlr');?>" method="post">
+<form id="add-row-form" action="<?php echo site_url('metode_uji/metode_uji/insert_metode_ctrlr');?>" method="post">
     <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         	<section class="panel">
 				<header class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="panel-title">Form Tambah Sampel</h2>
+					<h2 class="panel-title">Form Tambah metode</h2>
 				</header>
 				<div class="panel-body">
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
@@ -57,29 +54,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<input type="text" name="input_nama" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Keterangan</label>
+							<div class="col-sm-9">
+								<input type="text" name="input_keterangan" class="form-control" placeholder="Contoh : Logam" required/>
+							</div>
+						</div>
 						<!-- Form tambahan modal *add* -->
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Status</label>
 							<div class="col-sm-9">
 								<input type="text" name="input_status" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SpmJumlah</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_spmjumlah" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SpmHari</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_spmhari" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Kan</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_kan" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -104,7 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </form>
 
 <!-- Modal Delete Product-->
-<form id="add-row-form" action="<?php echo base_url();?>index.php/sampel/sampel/delete_sampel_ctrlr" method="post">
+<form id="add-row-form" action="<?php echo base_url();?>index.php/metode_uji/metode_uji/delete_metode_ctrlr" method="post">
     <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
 			<section class="panel">
@@ -115,8 +100,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="modal-text">
 							<input type="hidden" name="id" class="form-control" required>
-							<h4>Are you sure?</h4>
-							<p>Are you sure that you want to delete this data?</p>
+							<h4>Hapus Data!</h4>
+							<p>Anda yakin ingin menghapus data ini?</p>
 						</div>
 					</div>
 				</div>
@@ -135,13 +120,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </form>
 
 <!-- Modal Update Product-->
-<form id="add-row-form" action="<?php echo site_url('sampel/sampel/update_sampel_ctrlr');?>" method="post">
+<form id="add-row-form" action="<?php echo site_url('metode_uji/metode_uji/update_metode_ctrlr');?>" method="post">
     <div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         	<section class="panel">
 				<header class="panel-heading">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="panel-title">Form Edit Sampel</h2>
+					<h2 class="panel-title">Form Edit Metode</h2>
 				</header>
 				<div class="panel-body">
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
@@ -158,27 +143,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-sm-3 control-label">Keterangan</label>
+							<div class="col-sm-9">
+								<input type="text" name="edit_keterangan" class="form-control" placeholder="Contoh : Logam" required/>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-sm-3 control-label">Status</label>
 							<div class="col-sm-9">
-								<input type="text" name="edit_status" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SpmJumlah</label>
-							<div class="col-sm-9">
-								<input type="text" name="edit_spmjumlah" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SpmHari</label>
-							<div class="col-sm-9">
-								<input type="text" name="edit_spmhari" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Kan</label>
-							<div class="col-sm-9">
-								<input type="text" name="edit_kan" class="form-control" placeholder="Contoh : 1" />
+								<input type="text" name="edit_status" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -262,20 +235,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             processing: true,
             serverSide: true,
             
-            ajax: {"url": "<?php echo base_url();?>index.php/sampel/sampel/get_all_sampel_json_ctrlr", "type": "POST"},
+            ajax: {"url": "<?php echo base_url();?>index.php/metode_uji/metode_uji/get_all_metode_json_ctrlr", "type": "POST"},
             
             columns: [
                 {"data": "nama"},
                 {"data": "status"},
-                {"data": "spmjumlah"},
-                {"data": "spmhari"},
-                {"data": "kan"},
-                {"data": "alasan"},
+                {"data": "keterangan"},
                 {"data": "view"}
             ],
 
             columnDefs: [{
-				targets: 6,
+				targets: 3,
 				orderable: false
 			}],
             
@@ -292,31 +262,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       	 $('#table_sampel').on('click','.edit_record',function(){
             var idaja=$(this).data('idaja');
             var namaaja=$(this).data('namaaja');
-            var statusaja=$(this).data('statusaja');
-            var spmjumlahaja=$(this).data('spmjumlahaja');
-            var spmhariaja=$(this).data('spmhariaja');
-            var kanaja=$(this).data('kanaja');
+            var keteranganaja=$(this).data('keteranganaja');
+            var statusaja =$ (this).data('statusaja');
             var alasanaja=$(this).data('alasanaja');
             
             $('#modal_edit').modal('show');
             
-
             $('[name="edit_id"]').val(idaja);
             $('[name="edit_nama"]').val(namaaja);
             $('[name="edit_status"]').val(statusaja);
-            $('[name="edit_spmjumlah"]').val(spmjumlahaja);
-            $('[name="edit_spmhari"]').val(spmhariaja);
-            $('[name="edit_kan"]').val(kanaja);
+            $('[name="edit_keterangan"]').val(keteranganaja);
             $('[name="edit_alasan"]').val(alasanaja);
       	});
 
       	$('#table_sampel').on('click','.delete_record',function(){
-            var idaja=$(this).data('idaja');
-            $('#modal_delete').modal('show');
-            $('[name="id"]').val(idaja);
-      	});
-
-		$('#table_sampel').on('click','.detail_record',function(){
             var idaja=$(this).data('idaja');
             $('#modal_delete').modal('show');
             $('[name="id"]').val(idaja);
