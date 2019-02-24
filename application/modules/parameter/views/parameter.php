@@ -22,11 +22,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table class="table table-bordered table-striped" width="100%" id="table_sampel">
 					<thead>
 						<tr>
-							<th>Lab Id</th>
-							<th>Nama</th>
-							<th>Status</th>
-							<th>Alasan</th>
-							<th>Actions</th>
+							
+							<th style="text-align: center;">Nama</th>
+							<th style="text-align: center;">Nama Laboratorium</th>
+							<th style="text-align: center;">Status</th>
+							<th style="text-align: center;">Actions</th>
 						</tr>	
 					</thead>
 				</table>
@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Lab Id</label>
 							<div class="col-sm-9">
-								<input type="text" name="input_labId" class="form-control" placeholder="Contoh : Logam" required/>
+								<input type="text" name="input_lab" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -133,7 +133,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Id</label>
 							<div class="col-sm-9">
-								<input type="text" name="edit_id" class="form-control" placeholder="Contoh : Logam" disabled />
+								<input type="text" name="edit_id" class="form-control" placeholder="Contoh : 1" readonly/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -151,7 +151,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Status</label>
 							<div class="col-sm-9">
-								<input type="text" name="edit_status" class="form-control" placeholder="Contoh : 1" />
+								<input type="radio" name="edit_status" value="0">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
+								<span>&nbsp;</span>
+								<input type="radio" name="edit_status" value="1">&nbsp;<span class="label label-success">Aktif</span></input>
 							</div>
 						</div>
 						<div class="form-group">
@@ -238,19 +240,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ajax: {"url": "<?php echo base_url();?>index.php/parameter/parameter/get_all_parameter_json_ctrlr", "type": "POST"},
             
             columns: [
-                {"data": "labId"},
-                {"data": "nama"},
+                
+                {"data": "namaparameter"},
+                {"data": "namalab"},
                 {"data": "status"},
-                {"data": "alasan"},
                 {"data": "view"}
             ],
 
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {           
+	            if(aData["status"] == '1'){
+	                $("td:eq(2)", nRow).html('<a class="label label-success">Aktif</a>');
+	            }else{
+	                $("td:eq(2)", nRow).html('<a class="label label-danger">Tidak Aktif</a>');
+	            }
+	            return nRow;
+	        },
+
             columnDefs: [{
-				targets: 4,
-				orderable: false
-			}],
+				targets: 3,
+				orderable: false,
+				className: 'text-center'
+			},
+			{
+	        	targets: 2,
+	        	className: 'text-center'
+	        }],
             
-            order: [[0, 'asc']],
+            order: [[1, 'asc']],
 
           	rowCallback: function(row, data, iDisplayIndex) {
               	var info = this.fnPagingInfo();
@@ -273,7 +289,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $('[name="edit_id"]').val(idaja);
             $('[name="edit_lab"]').val(labIdaja);
             $('[name="edit_nama"]').val(namaaja);
-            $('[name="edit_status"]').val(statusaja);
+            $('input:radio[name=edit_status]:nth('+statusaja+')').attr('checked',true);
             $('[name="edit_alasan"]').val(alasanaja);
       	});
 
