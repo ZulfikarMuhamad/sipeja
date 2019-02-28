@@ -92,7 +92,7 @@
 							</a>
 							<ul class="nav nav-children">
 								<li>
-									<a href="#">
+									<a href="<?php echo base_url('index.php/bidang'); ?>">
 										 Bidang
 									</a>
 								</li>
