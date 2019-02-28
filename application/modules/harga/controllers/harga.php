@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class sampel extends CI_Controller {
+class harga extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -22,41 +22,41 @@ class sampel extends CI_Controller {
 	function __construct(){
     	parent::__construct();
     	$this->load->library('datatables'); //load library ignited-dataTable
-    	$this->load->model('sampelModel'); //load model crud_model
+    	$this->load->model('hargaModel'); //load model crud_model
   	}
 
 	public function index()
 	{
-		$x['sampel']=$this->sampelModel->get_sampel();
+		$x['harga']=$this->hargaModel->get_harga();
 		
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar-1');
-		$this->load->view('sampel', $x);
+		$this->load->view('harga', $x);
 		$this->load->view('layouts/footer');
 	}
 
-	function get_all_sampel_json_ctrlr() { //get product data and encode to be JSON object
+	function get_all_harga_json_ctrlr() { //get product data and encode to be JSON object
       	header('Content-Type: application/json');
-      	echo $this->sampelModel->get_all_sampel();
+      	echo $this->hargaModel->get_all_harga();
   	}
 
-  	function get_sampel_by_id_json(){
+  	function get_harga_by_id_json(){
   		header('Content-Type: application/json');
-  		echo $this->sampelModel->get_sampel_by_id();
+  		echo $this->hargaModel->get_harga_by_id();
   	}
  
-  	function insert_sampel_ctrlr(){ //insert record method
-      	$this->sampelModel->insert_sampel();
-      	redirect('sampel');
+  	function insert_harga_ctrlr(){ //insert record method
+      	$this->hargaModel->insert_harga();
+      	redirect('harga');
  	}
  
- 	function update_sampel_ctrlr(){ //update record method
-    	$this->sampelModel->update_sampel();
-      	redirect('sampel');
+ 	function update_harga_ctrlr(){ //update record method
+    	$this->hargaModel->update_harga();
+      	redirect('harga');
   	}
  
-  	function delete_sampel_ctrlr(){ //delete record method
-      	$this->sampelModel->delete_sampel();
-      	redirect('sampel');
+  	function delete_harga_ctrlr(){ //delete record method
+      	$this->hargaModel->delete_harga();
+      	redirect('harga');
   	}
 }

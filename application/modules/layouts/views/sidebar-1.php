@@ -33,31 +33,13 @@
 									</a>
 								</li>
 								<li>
-									<a href="#">
+									<a href="<?php echo base_url('index.php/harga'); ?>">
 										 Daftar Harga
 									</a>
 								</li>
 								<li>
 									<a href="#">
 										 Penawaran Order
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-parent">
-							<a>
-								<i class="fa fa-users" aria-hidden="true"></i>
-								<span>Pelanggan</span>
-							</a>
-							<ul class="nav nav-children">
-								<li>
-									<a href="#">
-										 Pelanggan
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										 Kontrak
 									</a>
 								</li>
 							</ul>
@@ -151,12 +133,6 @@
 							<a href="#">
 								<i class="fa fa-archive" aria-hidden="true"></i>
 								<span>Dokumen</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-user" aria-hidden="true"></i>
-								<span>user</span>
 							</a>
 						</li>
 						<li>
