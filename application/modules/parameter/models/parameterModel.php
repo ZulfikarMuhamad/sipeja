@@ -70,4 +70,12 @@ class parameterModel extends CI_Model {
      	$result=$this->db->delete('parameter');
       	return $result;
 	}
+
+  function get_active_parameter($where){
+      $this->db->select('*');
+      $this->db->from('parameter');
+      $this->db->where($where);
+      $result = $this->db->get();
+      return $result;
+  }
 }

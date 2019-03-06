@@ -73,4 +73,12 @@ class sampelModel extends CI_Model {
      	$result=$this->db->delete('sampel');
       	return $result;
 	}
+
+  function get_active_sampel($where){
+    $this->db->select('*');
+    $this->db->from('sampel');
+    $this->db->where($where);
+    $result = $this->db->get();
+    return $result;
+  }
 }

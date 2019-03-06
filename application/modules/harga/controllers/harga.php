@@ -59,4 +59,10 @@ class harga extends CI_Controller {
       	$this->hargaModel->delete_harga();
       	redirect('harga');
   	}
+
+  	function get_all_harga(){
+  		$get = $this->hargaModel->get_harga()->result_array();
+
+  		echo json_encode($get);
+  	}
 }

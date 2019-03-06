@@ -59,4 +59,9 @@ class sampel extends CI_Controller {
       	$this->sampelModel->delete_sampel();
       	redirect('sampel');
   	}
+
+  	function get_active_sampel(){
+  		$get = $this->sampelModel->get_active_sampel(array('status'=>'1'))->result_array();
+  		echo json_encode($get);
+  	}
 }
