@@ -102,7 +102,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('index.php/lingkup'); ?>">
+									<a href="<?php echo base_url('index.php/lingkup_lab'); ?>">
 										 Lingkup-Lab
 									</a>
 								</li>

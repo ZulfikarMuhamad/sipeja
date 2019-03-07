@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class lingkup extends CI_Controller {
+class lab extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -22,41 +22,49 @@ class lingkup extends CI_Controller {
 	function __construct(){
     	parent::__construct();
     	$this->load->library('datatables'); //load library ignited-dataTable
-    	$this->load->model('lingkupModel'); //load model crud_model
+    	$this->load->model('labModel'); //load model crud_model
   	}
 
 	public function index()
 	{
-		$x['lingkup']=$this->lingkupModel->get_lingkup();
-		
+		$x['bidang']=$this->labModel->get_bidang();
+		$y['seksie']=$this->labModel->get_seksie();
+
+		/*
+		$a['kabid']=$this->labModel->get_kabid();
+		$b['kasi']=$this->labModel->get_kasi();
+		$c['koord']=$this->labModel->get_koord();
+		$d['admin']=$this->labModel->get_admin();
+		*/
+
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar-1');
-		$this->load->view('lingkup', $x);
+		$this->load->view('lab', $y);
 		$this->load->view('layouts/footer');
 	}
 
-	function get_all_lingkup_json_ctrlr() { //get product data and encode to be JSON object
+	function get_all_lab_json_ctrlr() { //get product data and encode to be JSON object
       	header('Content-Type: application/json');
-      	echo $this->lingkupModel->get_all_lingkup();
+      	echo $this->labModel->get_all_lab();
   	}
 
-  	function get_lingkup_by_id_json(){
+  	function get_lab_by_id_json(){
   		header('Content-Type: application/json');
-  		echo $this->lingkupModel->get_lingkup_by_id();
+  		echo $this->labModel->get_lab_by_id();
   	}
  
-  	function insert_lingkup_ctrlr(){ //insert record method
-      	$this->lingkupModel->insert_lingkup();
-      	redirect('lingkup');
+  	function insert_lab_ctrlr(){ //insert record method
+      	$this->labModel->insert_lab();
+      	redirect('lab');
  	}
  
- 	function update_lingkup_ctrlr(){ //update record method
-    	$this->lingkupModel->update_lingkup();
-      	redirect('lingkup');
+ 	function update_lab_ctrlr(){ //update record method
+    	$this->labModel->update_lab();
+      	redirect('lab');
   	}
  
   	function delete_lingkup_ctrlr(){ //delete record method
-      	$this->lingkupModel->delete_lingkup();
-      	redirect('lingkup');
+      	$this->labModel->delete_lab();
+      	redirect('lab');
   	}
 }
