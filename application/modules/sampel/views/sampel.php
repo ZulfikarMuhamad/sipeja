@@ -22,13 +22,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table class="table table-bordered table-striped" width="100%" id="table_sampel">
 					<thead>
 						<tr>
-							<th>Nama</th>
-							<th>Status</th>
-							<th>SpmJumlah</th>
-							<th>SpmHari</th>
-							<th>Kan</th>
-							<th>Alasan</th>
-							<th>Actions</th>
+							<th style="text-align: center;">Nama</th>
+							<th style="text-align: center;">SPM</th>
+							<th style="text-align: center;">KAN</th>
+							<th style="text-align: center;">Status</th>
+							<th style="text-align: center;">Actions</th>
 						</tr>	
 					</thead>
 				</table>
@@ -139,11 +137,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         	<section class="panel">
-				<header class="panel-heading">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="panel-title">Form Edit Sampel</h2>
-				</header>
 				<div class="panel-body">
+					<div class="modal-icon center">
+						<i class="fa fa-pencil"></i>
+					</div>
+					<div class="modal-text text-center">
+						<h4>Edit Data Sampel</h4>
+					</div>
+					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Id</label>
@@ -152,33 +153,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Nama</label>
+							<label class="col-sm-3 control-label">SPM</label>
 							<div class="col-sm-9">
 								<input type="text" name="edit_nama" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-sm-3 control-label">SPM</label>
+							<div class="col-sm-4">
+								jumlah sampel : <input type="number" name="edit_spmjumlah" class="form-control" placeholder="Contoh : 1" />
+							</div>
+							<div class="col-sm-1"></div>
+							<div class="col-sm-4">
+								Batas Hari : <input type="number" name="edit_spmjumlah" class="form-control" placeholder="Contoh : 1" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Sertifikasi KAN</label>
+							<div class="col-sm-9">
+								<input type="radio" name="edit_kan" value="0">&nbsp;<span class="label label-default">Tidak</span></input>
+								<span>&nbsp;</span>
+								<input type="radio" name="edit_kan" value="1">&nbsp;<span class="label label-info">Ya</span></input>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-sm-3 control-label">Status</label>
 							<div class="col-sm-9">
-								<input type="text" name="edit_status" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SpmJumlah</label>
-							<div class="col-sm-9">
-								<input type="text" name="edit_spmjumlah" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SpmHari</label>
-							<div class="col-sm-9">
-								<input type="text" name="edit_spmhari" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Kan</label>
-							<div class="col-sm-9">
-								<input type="text" name="edit_kan" class="form-control" placeholder="Contoh : 1" />
+								<input type="radio" name="edit_status" value="0">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
+								<span>&nbsp;</span>
+								<input type="radio" name="edit_status" value="1">&nbsp;<span class="label label-success">Aktif</span></input>
 							</div>
 						</div>
 						<div class="form-group">
@@ -187,16 +190,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<textarea rows="3" name="edit_alasan" class="form-control"></textarea>
 							</div>
 						</div>
+						<div class="form-group">
+							<div class="col-md-12 text-right">
+								<button type="submit" class="btn btn-primary modal-confirm">Edit</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+							</div>
+						</div>
 					</form>
 				</div>
-				<footer class="panel-footer">
-					<div class="row">
-						<div class="col-md-12 text-right">
-							<button type="submit" class="btn btn-primary modal-confirm">Edit</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-						</div>
+			</section>
+        </div>
+    </div>
+</form>
+
+<!-- Detail Sampel -->
+<form id="add-row-form" action="<?php echo site_url('sampel/sampel/update_sampel_ctrlr');?>" method="post">
+    <div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        	<section class="panel">
+				<div class="panel-body">
+					<div class="modal-icon center">
+						<i class="fa fa-eye"></i>
 					</div>
-				</footer>
+					<div class="modal-text text-center">
+						<h4>Detail Sampel</h4>
+					</div>
+					<hr>
+					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Id</label>
+							<div class="col-sm-9">
+								<input type="text" name="detail_id" class="form-control" placeholder="Contoh : Logam" disabled />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">SPM</label>
+							<div class="col-sm-9">
+								<input type="text" name="detail_nama" class="form-control" placeholder="Contoh : Logam" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">SPM</label>
+							<div class="col-sm-4">
+								jumlah sampel : <input type="number" name="detail_spmjumlah" class="form-control" placeholder="Contoh : 1" />
+							</div>
+							<div class="col-sm-1"></div>
+							<div class="col-sm-4">
+								Batas Hari : <input type="number" name="detail_spmjumlah" class="form-control" placeholder="Contoh : 1" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Sertifikasi KAN</label>
+							<div class="col-sm-9">
+								<input type="radio" name="detail_kan" value="0">&nbsp;<span class="label label-default">Tidak</span></input>
+								<span>&nbsp;</span>
+								<input type="radio" name="detail_kan" value="1">&nbsp;<span class="label label-info">Ya</span></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Status</label>
+							<div class="col-sm-9">
+								<input type="radio" name="detail_status" value="0">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
+								<span>&nbsp;</span>
+								<input type="radio" name="detail_status" value="1">&nbsp;<span class="label label-success">Aktif</span></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Alasan</label>
+							<div class="col-sm-9">
+								<textarea rows="3" name="detail_alasan" class="form-control"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12 text-right">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</section>
         </div>
     </div>
@@ -266,18 +337,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
             columns: [
                 {"data": "nama"},
-                {"data": "status"},
                 {"data": "spmjumlah"},
-                {"data": "spmhari"},
                 {"data": "kan"},
-                {"data": "alasan"},
+                {"data": "status"},
                 {"data": "view"}
             ],
 
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {           
+	            /*change value of cells status*/
+	            if(aData["status"] == '1'){
+	                $("td:eq(3)", nRow).html('<a class="label label-success">Aktif</a>');
+	            }else{
+	                $("td:eq(3)", nRow).html('<a class="label label-danger">Tidak Aktif</a>');
+	            }
+	            /*change value of cells SPM*/
+	            	$("td:eq(1)", nRow).html(aData["spmhari"]+' hari/ '+aData["spmjumlah"]+' sampel');
+
+	            /*change value of cells KAN*/
+	            if(aData["kan"] == '1'){
+	                $("td:eq(2)", nRow).html('<a class="label label-info">Ya</a>');
+	            }else{
+	                $("td:eq(2)", nRow).html('<a class="label label-default">Tidak</a>');
+	            }
+	            return nRow;
+	        },
+
             columnDefs: [{
-				targets: 6,
+				targets: 4,
 				orderable: false
-			}],
+			},
+			{
+	        	targets: [1,2,3,4],
+	        	className: 'text-center'
+	        }],
             
             order: [[0, 'asc']],
 
@@ -303,20 +395,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             $('[name="edit_id"]').val(idaja);
             $('[name="edit_nama"]').val(namaaja);
-            $('[name="edit_status"]').val(statusaja);
+            $('input:radio[name=edit_status]:nth('+statusaja+')').attr('checked',true);
             $('[name="edit_spmjumlah"]').val(spmjumlahaja);
             $('[name="edit_spmhari"]').val(spmhariaja);
-            $('[name="edit_kan"]').val(kanaja);
+            $('input:radio[name=edit_kan]:nth('+kanaja+')').attr('checked',true);
             $('[name="edit_alasan"]').val(alasanaja);
       	});
 
-      	$('#table_sampel').on('click','.delete_record',function(){
+      	 $('#table_sampel').on('click','.detail_record',function(){
             var idaja=$(this).data('idaja');
-            $('#modal_delete').modal('show');
-            $('[name="id"]').val(idaja);
+            var namaaja=$(this).data('namaaja');
+            var statusaja=$(this).data('statusaja');
+            var spmjumlahaja=$(this).data('spmjumlahaja');
+            var spmhariaja=$(this).data('spmhariaja');
+            var kanaja=$(this).data('kanaja');
+            var alasanaja=$(this).data('alasanaja');
+            
+            $('#modal_detail').modal('show');
+            
+
+            $('[name="detail_id"]').val(idaja);
+            $('[name="detail_nama"]').val(namaaja);
+            $('input:radio[name=detail_status]:nth('+statusaja+')').attr('checked',true);
+            $('[name="detail_spmjumlah"]').val(spmjumlahaja);
+            $('[name="detail_spmhari"]').val(spmhariaja);
+            $('input:radio[name=detail_kan]:nth('+kanaja+')').attr('checked',true);
+            $('[name="detail_alasan"]').val(alasanaja);
       	});
 
-		$('#table_sampel').on('click','.detail_record',function(){
+      	$('#table_sampel').on('click','.delete_record',function(){
             var idaja=$(this).data('idaja');
             $('#modal_delete').modal('show');
             $('[name="id"]').val(idaja);

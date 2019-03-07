@@ -17,7 +17,12 @@ class parameterModel extends CI_Model {
       	$this->datatables->add_column(
       		'view', 
       		
-      		'<a href="javascript:void(0);" class="edit_record label label-default" data-idaja="$1" data-labaja="$2" data-namaaja="$3" data-statusaja="$4" data-alasanaja="$5" data-namalabaja="6">
+      		'<a href="javascript:void(0);" class="detail_record label label-default" data-idaja="$1" data-labaja="$2" data-namaaja="$3" data-statusaja="$4" data-alasanaja="$5" data-namalabaja="6">
+            <i class="fa fa-eye" style="color: #777777">
+            </i>
+          </a>
+
+          <a href="javascript:void(0);" class="edit_record label label-default" data-idaja="$1" data-labaja="$2" data-namaaja="$3" data-statusaja="$4" data-alasanaja="$5" data-namalabaja="6">
       			<i class="fa fa-pencil" style="color: #777777">
       			</i>
       		</a>
@@ -65,4 +70,12 @@ class parameterModel extends CI_Model {
      	$result=$this->db->delete('parameter');
       	return $result;
 	}
+
+  function get_active_parameter($where){
+      $this->db->select('*');
+      $this->db->from('parameter');
+      $this->db->where($where);
+      $result = $this->db->get();
+      return $result;
+  }
 }

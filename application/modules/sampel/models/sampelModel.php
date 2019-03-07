@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class sampelModel extends CI_Model {
 
 	
-	function get_lab(){
+	function get_sampel(){
       	$result=$this->db->get('sampel');
       	return $result;
   	}
@@ -16,20 +16,20 @@ class sampelModel extends CI_Model {
       	$this->datatables->add_column(
       		'view', 
       		
-      		'<a href="javascript:void(0);" class="edit_record" data-idaja="$1" data-namaaja="$2" data-statusaja="$3" data-spmjumlahaja="$4" data-spmhariaja="$5" data-kanaja="$6" data-alasanaja="$7">
+      		'<a href="javascript:void(0);" class="detail_record label label-default" data-idaja="$1" data-namaaja="$2" data-statusaja="$3" data-spmjumlahaja="$4" data-spmhariaja="$5" data-kanaja="$6" data-alasanaja="$7">
+            <i class="fa fa-eye" style="color: #777777">
+            </i>
+          </a>
+
+          <a href="javascript:void(0);" class="edit_record label label-default" data-idaja="$1" data-namaaja="$2" data-statusaja="$3" data-spmjumlahaja="$4" data-spmhariaja="$5" data-kanaja="$6" data-alasanaja="$7">
       			<i class="fa fa-pencil" style="color: #777777">
       			</i>
       		</a>
       		
-      		<a href="javascript:void(0);" class="delete_record" data-idaja="$1">
+      		<a href="javascript:void(0);" class="delete_record label label-default" data-idaja="$1">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
-      		</a>
-
-          <a href="javascript:void(0);" class="detail_record" data-idaja="$1">
-            <i class="fa fa-trash-o" style="color: #777777">
-            </i>
-          </a>',
+      		</a>',
 
       		'id,nama,status,spmjumlah,spmhari,kan,alasan');
       	return $this->datatables->generate();
@@ -73,4 +73,12 @@ class sampelModel extends CI_Model {
      	$result=$this->db->delete('sampel');
       	return $result;
 	}
+
+  function get_active_sampel($where){
+    $this->db->select('*');
+    $this->db->from('sampel');
+    $this->db->where($where);
+    $result = $this->db->get();
+    return $result;
+  }
 }

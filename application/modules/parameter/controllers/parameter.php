@@ -59,4 +59,9 @@ class parameter extends CI_Controller {
       	$this->parameterModel->delete_parameter();
       	redirect('parameter');
   	}
+
+  	function get_active_parameter(){
+  		$get = $this->parameterModel->get_active_parameter(array('status'=>'1'))->result_array();
+  		echo json_encode($get);
+  	}
 }
