@@ -42,42 +42,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         	<section class="panel">
-				<header class="panel-heading">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="panel-title">Form Tambah Sampel</h2>
-				</header>
 				<div class="panel-body">
+					<div class="modal-icon center">
+						<i class="fa fa-plus-square-o"></i>
+					</div>
+					<div class="modal-text text-center">
+						<h4>Tambah Data</h4>
+					</div>
+					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-						
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nama</label>
 							<div class="col-sm-9">
 								<input type="text" name="input_nama" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
 						</div>
-						<!-- Form tambahan modal *add* -->
+						<div class="form-group">
+							<label class="col-sm-3 control-label">SPM</label>
+							<div class="col-sm-4">
+								Jumlah Sampel : <input type="number" name="input_spmjumlah" class="form-control"/>
+							</div>
+							<div class="col-sm-1"></div>
+							<div class="col-sm-4">
+								Batas Hari : <input type="number" name="input_spmhari" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Sertifikasi KAN</label>
+							<div class="col-sm-9">
+								<input type="radio" name="input_kan" value="0">&nbsp;<span class="label label-default">Tidak</span></input>
+								<span>&nbsp;</span>
+								<input type="radio" name="input_kan" value="1">&nbsp;<span class="label label-info">Ya</span></input>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Status</label>
 							<div class="col-sm-9">
-								<input type="text" name="input_status" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SpmJumlah</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_spmjumlah" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SpmHari</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_spmhari" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Kan</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_kan" class="form-control" placeholder="Contoh : 1" />
+								<input type="radio" name="input_status" value="0">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
+								<span>&nbsp;</span>
+								<input type="radio" name="input_status" value="1">&nbsp;<span class="label label-success">Aktif</span></input>
 							</div>
 						</div>
 						<div class="form-group">
@@ -86,16 +89,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<textarea rows="3" name="input_alasan" class="form-control"></textarea>
 							</div>
 						</div>
-					</form>
-				</div>
-				<footer class="panel-footer">
-					<div class="row">
-						<div class="col-md-12 text-right">
-							<button type="submit" class="btn btn-primary modal-confirm">Tambah</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+						<div class="form-group">
+							<div class="col-sm-12  text-right">
+								<button type="submit" class="btn btn-primary modal-confirm">Tambah</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>	
+							</div>
 						</div>
-					</div>
-				</footer>
+					</form>
 			</section>
         </div>
     </div>
@@ -147,13 +147,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Id</label>
-							<div class="col-sm-9">
-								<input type="text" name="edit_id" class="form-control" placeholder="Contoh : Logam" disabled />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SPM</label>
+							<input type="hidden" name="edit_id" class="form-control" placeholder="Contoh : Logam" readonly />
+							<label class="col-sm-3 control-label">Nama Sampel</label>
 							<div class="col-sm-9">
 								<input type="text" name="edit_nama" class="form-control" placeholder="Contoh : Logam" required/>
 							</div>
@@ -161,11 +156,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="form-group">
 							<label class="col-sm-3 control-label">SPM</label>
 							<div class="col-sm-4">
-								jumlah sampel : <input type="number" name="edit_spmjumlah" class="form-control" placeholder="Contoh : 1" />
+								Jumlah Sampel : <input type="number" name="edit_spmjumlah" class="form-control" placeholder="Contoh : 1" />
 							</div>
 							<div class="col-sm-1"></div>
 							<div class="col-sm-4">
-								Batas Hari : <input type="number" name="edit_spmjumlah" class="form-control" placeholder="Contoh : 1" />
+								Batas Hari : <input type="number" name="edit_spmhari" class="form-control" placeholder="Contoh : 1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -217,56 +212,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Id</label>
+						<div class="col-md-12">
+							<label class="col-sm-3 control-label">Nama Sampel</label>
 							<div class="col-sm-9">
-								<input type="text" name="detail_id" class="form-control" placeholder="Contoh : Logam" disabled />
+								<label id="detail_nama"></label>
 							</div>
-						</div>
-						<div class="form-group">
+							<br>
 							<label class="col-sm-3 control-label">SPM</label>
 							<div class="col-sm-9">
-								<input type="text" name="detail_nama" class="form-control" placeholder="Contoh : Logam" required/>
+								Jumlah Sampel : <label id="detail_spmjumlah"></label> &nbsp;&nbsp;
+								Batas Hari : <label id="detail_spmhari"></label>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">SPM</label>
-							<div class="col-sm-4">
-								jumlah sampel : <input type="number" name="detail_spmjumlah" class="form-control" placeholder="Contoh : 1" />
-							</div>
-							<div class="col-sm-1"></div>
-							<div class="col-sm-4">
-								Batas Hari : <input type="number" name="detail_spmjumlah" class="form-control" placeholder="Contoh : 1" />
-							</div>
-						</div>
-						<div class="form-group">
+							<br>
 							<label class="col-sm-3 control-label">Sertifikasi KAN</label>
 							<div class="col-sm-9">
-								<input type="radio" name="detail_kan" value="0">&nbsp;<span class="label label-default">Tidak</span></input>
-								<span>&nbsp;</span>
-								<input type="radio" name="detail_kan" value="1">&nbsp;<span class="label label-info">Ya</span></input>
+								<label id="detail_kan"></label>
 							</div>
-						</div>
-						<div class="form-group">
+							<br>
 							<label class="col-sm-3 control-label">Status</label>
 							<div class="col-sm-9">
-								<input type="radio" name="detail_status" value="0">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
-								<span>&nbsp;</span>
-								<input type="radio" name="detail_status" value="1">&nbsp;<span class="label label-success">Aktif</span></input>
+								<label id="detail_status"></label>
 							</div>
-						</div>
-						<div class="form-group">
+							<br>
 							<label class="col-sm-3 control-label">Alasan</label>
 							<div class="col-sm-9">
-								<textarea rows="3" name="detail_alasan" class="form-control"></textarea>
+								<label id="detail_alasan"></label>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-md-12 text-right">
+							<div class="col-sm-12 text-right">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
 							</div>
 						</div>
 					</form>
+					
 				</div>
 			</section>
         </div>
@@ -403,7 +382,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       	});
 
       	 $('#table_sampel').on('click','.detail_record',function(){
-            var idaja=$(this).data('idaja');
             var namaaja=$(this).data('namaaja');
             var statusaja=$(this).data('statusaja');
             var spmjumlahaja=$(this).data('spmjumlahaja');
@@ -413,14 +391,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
             $('#modal_detail').modal('show');
             
-
-            $('[name="detail_id"]').val(idaja);
-            $('[name="detail_nama"]').val(namaaja);
-            $('input:radio[name=detail_status]:nth('+statusaja+')').attr('checked',true);
-            $('[name="detail_spmjumlah"]').val(spmjumlahaja);
-            $('[name="detail_spmhari"]').val(spmhariaja);
-            $('input:radio[name=detail_kan]:nth('+kanaja+')').attr('checked',true);
-            $('[name="detail_alasan"]').val(alasanaja);
+            $('#detail_nama').html(namaaja);
+            if (statusaja=='1') {
+            	$("#detail_status").html('<span class="label label-success">Aktif</span>');
+            }else{
+            	$("#detail_status").html('<span class="label label-danger">Tidak Aktif</span>');
+            }
+            if (kanaja=='1') {
+            	$("#detail_kan").html('<span class="label label-info">Ya</span>');
+            }else{
+            	$("#detail_kan").html('<span class="label label-default">Tidak</span>');
+            }
+            $('#detail_spmjumlah').html(spmjumlahaja);
+            $('#detail_spmhari').html(spmhariaja);
+            $('#detail_alasan').html(alasanaja);
       	});
 
       	$('#table_sampel').on('click','.delete_record',function(){

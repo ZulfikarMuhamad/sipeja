@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <section role="main" class="content-body">
-	<header class="page-header" style="float: right;">
+	<header class="page-header">
 		<!-- Head title of page -->
 		<h2 style="float: right;"> harga </h2>
 	</header>
@@ -52,34 +52,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Nama</label>
+							<label class="col-sm-3 control-label">Nama Sampel</label>
 							<label class="col-sm-1 control-label">:</label>
-							<div class="col-sm-9">
-								<input type="text" name="input_nama" class="form-control" placeholder="ex: SNI" required/>
+							<div class="col-sm-8">
+								<select name="input_sampel_id" class="form-control" required>
+									<option value="" selected disabled hidden>Pilih Sampel</option>
+									<?php foreach($sampel->result() as $row) :?>
+										<option value="<?php echo $row->id; ?>">
+											<?php echo $row->nama; ?>
+										</option>
+									<?php endforeach; ?>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Keterangan</label>
+							<label class="col-sm-3 control-label">Parameter</label>
 							<label class="col-sm-1 control-label">:</label>
-							<div class="col-sm-9">
-								<textarea rows="3" name="input_keterangan" class="form-control" required></textarea>
+							<div class="col-sm-8">
+								<select name="input_nama_parameter" class="form-control" required>
+									<option value="" disabled selected hidden>Pilih Parameter</option>
+									<?php foreach($parameter->result() as $row) :?>
+										<option value="<?php echo $row->id; ?>">
+											<?php echo $row->nama; ?>
+										</option>
+									<?php endforeach; ?>
+								</select>
 							</div>
 						</div>
-						<!-- Form tambahan modal *add* -->
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Status</label>
+							<label class="col-sm-3 control-label">Harga</label>
 							<label class="col-sm-1 control-label">:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
+								<input type="number" name="input_harga" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Status</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-8">
 								<input type="radio" name="input_status" value="0">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
 								<span>&nbsp;</span>
 								<input type="radio" name="input_status" value="1">&nbsp;<span class="label label-success">Aktif</span></input>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Alasan</label>
-							<label class="col-sm-1 control-label">:</label>
-							<div class="col-sm-9">
-								<textarea rows="3" name="input_alasan" class="form-control"></textarea>
 							</div>
 						</div>
 						<div class="form-group">

@@ -27,7 +27,8 @@ class harga extends CI_Controller {
 
 	public function index()
 	{
-		$x['harga']=$this->hargaModel->get_harga();
+		$x['sampel']=$this->hargaModel->get_sampel();
+		$x['parameter']=$this->hargaModel->get_parameter();
 		
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar-1');
