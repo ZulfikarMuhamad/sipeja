@@ -16,17 +16,17 @@ class sampelModel extends CI_Model {
       	$this->datatables->add_column(
       		'view', 
       		
-      		'<a href="javascript:void(0);" class="detail_record label label-default" data-idaja="$1" data-namaaja="$2" data-statusaja="$3" data-spmjumlahaja="$4" data-spmhariaja="$5" data-kanaja="$6" data-alasanaja="$7">
+      		'<a href="javascript:void(0);" title="Detail" class="detail_record label label-default" data-idaja="$1" data-namaaja="$2" data-statusaja="$3" data-spmjumlahaja="$4" data-spmhariaja="$5" data-kanaja="$6" data-alasanaja="$7">
             <i class="fa fa-eye" style="color: #777777">
             </i>
           </a>
-
-          <a href="javascript:void(0);" class="edit_record label label-default" data-idaja="$1" data-namaaja="$2" data-statusaja="$3" data-spmjumlahaja="$4" data-spmhariaja="$5" data-kanaja="$6" data-alasanaja="$7">
+          &nbsp;
+          <a href="javascript:void(0);" title="Edit" class="edit_record label label-default" data-idaja="$1" data-namaaja="$2" data-statusaja="$3" data-spmjumlahaja="$4" data-spmhariaja="$5" data-kanaja="$6" data-alasanaja="$7">
       			<i class="fa fa-pencil" style="color: #777777">
       			</i>
       		</a>
-      		
-      		<a href="javascript:void(0);" class="delete_record label label-default" data-idaja="$1">
+      		&nbsp;
+      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',

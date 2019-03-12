@@ -27,7 +27,7 @@ class parameter extends CI_Controller {
 
 	public function index()
 	{
-		$x['parameter']=$this->parameterModel->get_parameter();
+		$x['lab']=$this->parameterModel->get_lab();
 		
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar-1');

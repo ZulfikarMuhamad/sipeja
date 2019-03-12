@@ -54,7 +54,7 @@ class metodeModel extends CI_Model {
           'nama'  => $this->input->post('edit_nama'),
           'keterangan'  => $this->input->post('edit_keterangan'),
           'status'  => $this->input->post('edit_status'),
-          'alasan'  => $this->input->post('alasan')
+          'alasan'  => $this->input->post('edit_alasan')
         );
         $this->db->where('id',$id);
         $result=$this->db->update('metode', $data);

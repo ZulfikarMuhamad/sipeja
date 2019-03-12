@@ -4,8 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class hargaModel extends CI_Model {
 
 	
-	function get_harga(){
-      	$result=$this->db->get('harga');
+	function get_sampel(){
+        $result=$this->db->get('sampel');
+        return $result;
+    }
+    function get_parameter(){
+      	$result=$this->db->get('parameter');
       	return $result;
   	}
   	
@@ -40,10 +44,10 @@ class hargaModel extends CI_Model {
   	//insert data method
   	function insert_harga(){
       	$data=array(
-          'nama'  => $this->input->post('input_nama'),
-          'keterangan'  => $this->input->post('input_keterangan'),
-          'status'  => $this->input->post('input_status'),
-        	'alasan'	=> $this->input->post('input_alasan'),
+          'parameterId'  => $this->input->post('input_nama_parameter'),
+          'sampelId'  => $this->input->post('input_sampel_id'),
+          'harga'  => $this->input->post('input_harga'),
+        	'status'	=> $this->input->post('input_status'),
       	);
       	$result=$this->db->insert('harga', $data);
       	return $result;

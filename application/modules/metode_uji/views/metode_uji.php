@@ -140,13 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Id</label>
-							<label class="col-sm-1 control-label">:</label>
-							<div class="col-sm-9">
-								<input type="text" name="edit_id" class="form-control" placeholder="Contoh : 1" readonly/>
-							</div>
-						</div>
-						<div class="form-group">
+							<input type="hidden" name="edit_id" class="form-control" placeholder="Contoh : 1" readonly/>
 							<label class="col-sm-2 control-label">Nama</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-9">
@@ -203,12 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
-						<div class="">
-							<label class="col-sm-3 control-label">Id</label>
-							<div class="col-sm-9">
-								<label id="detail_id"></label>
-							</div>
-							</br>
+						<div class="col-md-12">
 							<label class="col-sm-3 control-label">Nama</label>
 							<div class="col-sm-9">
 								<label id="detail_nama"></label>
