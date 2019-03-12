@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="row">
 				<div class="col-md-12">
 					<div class="mb-md pull-right">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Add <i class="fa fa-plus"></i></button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#modal_add" id="button_add">Add <i class="fa fa-plus"></i></button>
 					</div>
 				</div>
 			</div>
@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </section>
 
 <!-- Modal Add Product-->
-<form id="add-row-form" action="<?php echo site_url('bidang/bidang/insert_bidang_ctrlr');?>" method="post">
+<form id="add-row-form" action="<?php echo site_url('lab/lab/insert_lab_ctrlr');?>" method="post">
     <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         	<section class="panel">
@@ -48,22 +48,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<i class="fa fa-plus-square-o"></i>
 					</div>
 					<div class="modal-text text-center">
-						<h4>Tambah Bidang</h4>
+						<h4>Tambah Laboratorium</h4>
 					</div>
 					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Nama Bidang</label>
+							<label class="col-sm-2 control-label">Nama Laboratorium</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-9">
-								<input type="text" name="input_nama" class="form-control" placeholder="ex: Inspeksi Teknik" required/>
+								<input type="text" name="input_nama" class="form-control" placeholder="Contoh : Kalibrasi" required/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Kode Bidang</label>
+							<label class="col-sm-2 control-label">Kode Laboratorium</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-9">
-								<textarea rows="3" name="input_kode" class="form-control" placeholder="ex: 1" required></textarea>
+								<input type="text" name="input_kode" class="form-control" placeholder="Contoh : 01" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Bidang</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<select name="input_bidang" id="input_bidang" class="form-control" required>
+                                <?php foreach ($bidang->result() as $row) :?>
+                                    <option value="<?php echo $row->id;?>">
+                                    	<?php echo $row->nama;?>
+                                    </option>
+                                <?php endforeach;?>
+                                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Seksie</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<select name="input_seksie" id="input_seksie" class="form-control" required>
+                                    <option value="">
+                                    	Pilih Bidang Terlebih Dahulu
+                                    </option>
+                                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Kabid</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<input type="text" name="input_kabid" class="form-control" placeholder="Contoh : 01" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Kasi</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<input type="text" name="input_kasi" class="form-control" placeholder="Contoh : 01" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Koord. Laboratorium</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<input type="text" name="input_koord" class="form-control" placeholder="Contoh : 01" required/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Admin Laboratorium</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<input type="text" name="input_admin" class="form-control" placeholder="Contoh : 01" required/>
 							</div>
 						</div>
 						<!-- Form tambahan modal *add* -->
@@ -97,7 +149,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </form>
 
 <!-- Modal Delete Product-->
-<form id="add-row-form" action="<?php echo base_url();?>index.php/bidang/bidang/delete_bidang_ctrlr" method="post">
+<form id="add-row-form" action="<?php echo base_url();?>index.php/lab/lab/delete_lab_ctrlr" method="post">
     <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
 			<section class="panel">
@@ -128,7 +180,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </form>
 
 <!-- Modal Update Product-->
-<form id="add-row-form" action="<?php echo site_url('bidang/bidang/update_bidang_ctrlr');?>" method="post">
+<form id="add-row-form" action="<?php echo site_url('lab/lab/update_lab_ctrlr');?>" method="post">
     <div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         	<section class="panel">
@@ -137,7 +189,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<i class="fa fa-edit"></i>
 					</div>
 					<div class="modal-text text-center">
-						<h4>Edit Bidang</h4>
+						<h4>Edit Laboratorium</h4>
 					</div>
 					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
@@ -145,21 +197,73 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label class="col-sm-2 control-label">Id</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-9">
-								<input type="text" name="edit_id" class="form-control" placeholder="Contoh : 1-9" readonly/>
+								<input type="text" name="edit_id" class="form-control" placeholder="Contoh : 1" readonly/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Nama Bidang</label>
+							<label class="col-sm-2 control-label">Nama Laboratorium</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-9">
-								<input type="text" name="edit_nama" class="form-control" placeholder="Contoh : Logam" required/>
+								<input type="text" name="edit_nama" class="form-control" placeholder="Contoh : Kalibrasi" required/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Kode Bidang</label>
+							<label class="col-sm-2 control-label">Kode Laboratorium</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-9">
-								<textarea rows="3" name="edit_kode" class="form-control" required></textarea>
+								<input type="text" name="edit_kode" class="form-control" placeholder="Contoh : 01" required></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Bidang</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<select name="edit_bidang" id="edit_bidang" class="form-control" required>
+                                <?php foreach ($bidang->result() as $row) :?>
+                                    <option value="<?php echo $row->id;?>">
+                                    	<?php echo $row->nama;?>
+                                    </option>
+                                <?php endforeach;?>
+                                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Seksie</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<select name="edit_seksie" id="edit_seksie" class="form-control" required>
+                                    <option value="">
+                                    	Pilih Bidang
+                                    </option>
+                                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Kabid</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<input type="text" name="edit_kabid" class="form-control" placeholder="Contoh : 1" required></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Kasi</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<input type="text" name="edit_kasi" class="form-control" placeholder="Contoh : 1" required></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Koord. Laboratorium</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<input type="text" name="edit_koord" class="form-control" placeholder="Contoh : 1" required></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Admin Laboratorium</label>
+							<label class="col-sm-1 control-label">:</label>
+							<div class="col-sm-9">
+								<input type="text" name="edit_admin" class="form-control" placeholder="Contoh : 1" required></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -201,33 +305,63 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<i class="fa fa-eye"></i>
 					</div>
 					<div class="modal-text text-center">
-						<h4>Detail Bidang</h4>
+						<h4>Detail Laboratorium</h4>
 					</div>
 					<hr>
 					<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 						<div class="">
-							<label class="col-sm-3 control-label">Id</label>
-							<div class="col-sm-9">
+							<label class="col-sm-4 control-label">Id</label>
+							<div class="col-sm-8">
 								<label id="detail_id" readonly></label>
 							</div>
 							</br>
-							<label class="col-sm-3 control-label">Nama Bidang</label>
-							<div class="col-sm-9">
+							<label class="col-sm-4 control-label">Nama Laboratorium</label>
+							<div class="col-sm-8">
 								<label id="detail_nama"></label>
 							</div>
 							<br>
-							<label class="col-sm-3 control-label">Kode Bidang</label>
-							<div class="col-sm-9">
+							<label class="col-sm-4 control-label">Kode Laboratorium</label>
+							<div class="col-sm-8">
 								<label id="detail_kode"></label>
 							</div>
 							<br>
-							<label class="col-sm-3 control-label">Status</label>
-							<div class="col-sm-9">
+							<label class="col-sm-4 control-label">Bidang</label>
+							<div class="col-sm-8">
+								<label id="detail_bidang"></label>
+							</div>
+							<br>
+							<label class="col-sm-4 control-label">Seksie</label>
+							<div class="col-sm-8">
+								<label id="detail_seksie"></label>
+							</div>
+							<br>
+							<label class="col-sm-4 control-label">Kabid</label>
+							<div class="col-sm-8">
+								<label id="detail_kabid"></label>
+							</div>
+							<br>
+							<label class="col-sm-4 control-label">Kasi</label>
+							<div class="col-sm-8">
+								<label id="detail_kasi"></label>
+							</div>
+							<br>
+							<label class="col-sm-4 control-label">Koord. Laboratorium</label>
+							<div class="col-sm-8">
+								<label id="detail_koord"></label>
+							</div>
+							<br>
+							<label class="col-sm-4 control-label">Admin Laboratorium</label>
+							<div class="col-sm-8">
+								<label id="detail_admin"></label>
+							</div>
+							<br>
+							<label class="col-sm-4 control-label">Status</label>
+							<div class="col-sm-8">
 								<label id="detail_status"></label>
 							</div>
 							<br>
-							<label class="col-sm-3 control-label">Alasan</label>
-							<div class="col-sm-9">
+							<label class="col-sm-4 control-label">Alasan</label>
+							<div class="col-sm-8">
 								<label id="detail_alasan"></label>
 							</div>
 						</div>
@@ -270,7 +404,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
 	$(document).ready(function(){
     	// Setup datatables
-
        	$.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
       	{
          	return {
@@ -291,8 +424,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   	.off('.DT')
                   	.on('input.DT', function() {
                     	api.search(this.value).draw();
-
-              	});
+              		});
           	},
             
             oLanguage: {
@@ -305,10 +437,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ajax: {"url": "<?php echo base_url();?>index.php/lab/lab/get_all_lab_json_ctrlr", "type": "POST"},
             
             columns: [
-                {"data": "laid"},
-                {"data": "seksieId"},
-				{"data": "lanama"},
                 {"data": "kode"},
+                {"data": "lanama"},
+				{"data": "snama"},
+                {"data": "bnama"},
                 {"data": "status"},
                 {"data": "view"}
             ],
@@ -342,19 +474,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           	}
       	});
 
-      	$('#table_bidang').on('click','.detail_record',function(){
-            var idaja=$(this).data('idaja');
-            var namaaja=$(this).data('namaaja');
+      	function abc(){
+      		$('#input_bidang').change(function(){
+				var input_bidang = $('#input_bidang').val();
+			  	if(input_bidang != ''){
+				   	$.ajax({
+				    	url:"<?php echo base_url();?>index.php/lab/lab/get_seksie_ctrlr",
+				    	method:"POST",
+				    	data:{input_bidang:input_bidang},
+				    	success:function(data){
+				     		$('[name="input_seksie"]').html(data);
+				    	}
+				   	});
+			  	}
+			  	else{
+					$('#input_seksie').html('<option value="">Pilih Bidang</option>');
+				}
+			});
+      	}
+
+      	/*
+      	$("#button_add").click(function(){
+	        $('#input_bidang').change(function(){
+
+	        	
+
+	        	
+				var abc = '1';
+			  	if(abc != ''){
+				   	$.ajax({
+				    	url:"<?php echo base_url();?>index.php/lab/lab/get_seksie_ctrlr",
+				    	method:"POST",
+				    	data:{abc:input_bidang},
+				    	success:function(data){
+				     		$('[name="input_seksie"]').html(data);
+				     		//$('#input_seksie').html('<option value="">abcd</option>');
+				    	}
+				   	});
+			  	}
+			  	else{
+					$('#input_seksie').html('<option value="">Pilih Bidang</option>');
+				}
+				
+			});  
+    	})
+    	*/  
+
+      	$('#table_lab').on('click','.detail_record',function(){
+            var laidaja=$(this).data('laidaja');
+            var lanamaaja=$(this).data('lanamaaja');
             var kodeaja=$(this).data('kodeaja');
+            var bnamaaja=$(this).data('bnamaaja');
+            var snamaaja=$(this).data('snamaaja');
+            var kabididaja=$(this).data('kabididaja');
+            var kasieidaja=$(this).data('kasieidaja');
+            var koordidaja=$(this).data('koordidaja');
+            var adminidaja=$(this).data('adminidaja');
             var statusaja =$ (this).data('statusaja');
             var alasanaja=$(this).data('alasanaja');
             
             $('#modal_detail').modal('show');
-            
+
             /*$('[name="detail_id"]').val(idaja);*/
-            $('#detail_id').html(idaja);
-            $('#detail_nama').html(namaaja);
+            $('#detail_id').html(laidaja);
+            $('#detail_nama').html(lanamaaja);
             $('#detail_kode').html(kodeaja);
+            $('#detail_bidang').html(bnamaaja);
+            $('#detail_seksie').html(snamaaja);
+            $('#detail_kabid').html(kabididaja);
+            $('#detail_kasi').html(kasieidaja);
+            $('#detail_koord').html(koordidaja);
+            $('#detail_admin').html(adminidaja);
             $('#detail_alasan').html(alasanaja);
             //$('[name="detail_nama"]').val(namaaja);
             //Make ieu gung bisa
@@ -368,27 +558,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             //$('[name="detail_alasan"]').val(alasanaja);
       	});
 
-      	 $('#table_bidang').on('click','.edit_record',function(){
-            var idaja=$(this).data('idaja');
-            var namaaja=$(this).data('namaaja');
+      	$('#table_lab').on('click','.edit_record',function(){
+        	var laidaja=$(this).data('laidaja');
+            var lanamaaja=$(this).data('lanamaaja');
             var kodeaja=$(this).data('kodeaja');
+            var bidaja=$(this).data('bidaja');
+            var sidaja=$(this).data('sidaja');
+            var snamaaja=$(this).data('snamaaja');
+            var kabididaja=$(this).data('kabididaja');
+            var kasieidaja=$(this).data('kasieidaja');
+            var koordidaja=$(this).data('koordidaja');
+            var adminidaja=$(this).data('adminidaja');
             var statusaja =$ (this).data('statusaja');
             var alasanaja=$(this).data('alasanaja');
-            
+
+            var edit_bidang = bidaja;
+			$.ajax({
+				url:"<?php echo base_url();?>index.php/lab/lab/get_seksie_ctrlr",
+				method:"POST",
+				data:{edit_bidang:edit_bidang},
+				success:function(data){
+				    $('[name="edit_seksie"]').html(data);
+				    $('[name="edit_seksie"]').val(sidaja);
+				}
+			});
+      
             $('#modal_edit').modal('show');
             
-            $('[name="edit_id"]').val(idaja);
-            $('[name="edit_nama"]').val(namaaja);
+            $('#edit_bidang').change(function(){
+				var edit_bidang = $('#edit_bidang').val();
+			  	if(edit_bidang != ''){
+				   	$.ajax({
+				    	url:"<?php echo base_url();?>index.php/lab/lab/get_seksie_ctrlr",
+				    	method:"POST",
+				    	data:{edit_bidang:edit_bidang},
+				    	success:function(data){
+				     		$('[name="edit_seksie"]').html(data);
+				    	}
+				   	});
+			  	}
+			  	else{
+					$('#edit_seksie').html('<option value="">Select State</option>');
+				}
+			});
+
+            $('[name="edit_id"]').val(laidaja);
+            $('[name="edit_nama"]').val(lanamaaja);
             $('[name="edit_kode"]').val(kodeaja);
+            $('[name="edit_bidang"]').val(bidaja);
+            $('[name="edit_kabid"]').val(kabididaja);
+            $('[name="edit_kasi"]').val(kasieidaja);
+            $('[name="edit_koord"]').val(koordidaja);
+            $('[name="edit_admin"]').val(adminidaja);
+
+            //$('select[name="edit_seksie"]:nth(<option value="'+ sidaja +'">'+ snamaaja +'</option>').attr('selected',true);
+
             //Make ieu gung bisa
             $('input:radio[name=edit_status]:nth('+statusaja+')').attr('checked',true);
             $('[name="edit_alasan"]').val(alasanaja);
+            
       	});
 
-      	$('#table_bidang').on('click','.delete_record',function(){
-            var idaja=$(this).data('idaja');
+      	$('#table_lab').on('click','.delete_record',function(){
+            var laidaja=$(this).data('laidaja');
             $('#modal_delete').modal('show');
-            $('[name="id"]').val(idaja);
+            $('[name="id"]').val(laidaja);
       	});
 
 	});

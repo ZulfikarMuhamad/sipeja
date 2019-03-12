@@ -27,20 +27,22 @@ class lab extends CI_Controller {
 
 	public function index()
 	{
-		$x['bidang']=$this->labModel->get_bidang();
-		$y['seksie']=$this->labModel->get_seksie();
-
+		$data['bidang']=$this->labModel->get_bidang();
+		//echo json_encode($data['bidang']);
+		//$data['seksie']=$this->labModel->get_seksie();
+		
 		/*
 		$a['kabid']=$this->labModel->get_kabid();
 		$b['kasi']=$this->labModel->get_kasi();
 		$c['koord']=$this->labModel->get_koord();
 		$d['admin']=$this->labModel->get_admin();
 		*/
-
+		
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/sidebar-1');
-		$this->load->view('lab', $y);
+		$this->load->view('lab', $data);
 		$this->load->view('layouts/footer');
+		
 	}
 
 	function get_all_lab_json_ctrlr() { //get product data and encode to be JSON object
@@ -63,8 +65,14 @@ class lab extends CI_Controller {
       	redirect('lab');
   	}
  
-  	function delete_lingkup_ctrlr(){ //delete record method
+  	function delete_lab_ctrlr(){ //delete record method
       	$this->labModel->delete_lab();
       	redirect('lab');
   	}
+
+  	function get_seksie_ctrlr(){
+  		if($this->input->post('edit_bidang')){
+   			echo $this->labModel->get_seksie($this->input->post('edit_bidang'));
+  		}
+ 	}
 }
