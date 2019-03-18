@@ -119,9 +119,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<i class="fa fa-question-circle"></i>
 						</div>
 						<div class="modal-text">
-							<input type="hidden" name="id" class="form-control" required>
+							<input type="hidden" name="delete_id" class="form-control" required>
+							<input type="hidden" name="delete_nama" class="form-control" required>
 							<h4>Hapus Data!</h4>
 							<p>Anda yakin ingin menghapus data ini?</p>
+							<textarea rows="3" name="delete_alasan" class="form-control" placeholder="Berikan alasan anda" required="true"></textarea>
 						</div>
 					</div>
 				</div>
@@ -420,8 +422,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       	$('#table_seksie').on('click','.delete_record',function(){
             var sidaja=$(this).data('sidaja');
+            var namaaja=$(this).data('snamaaja');
+
             $('#modal_delete').modal('show');
-            $('[name="id"]').val(sidaja);
+
+            $('[name="delete_id"]').val(sidaja);
+            $('[name="delete_nama"]').val(namaaja);
       	});
 
 	});

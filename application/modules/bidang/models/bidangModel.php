@@ -26,7 +26,7 @@ class bidangModel extends CI_Model {
       			</i>
       		</a>
       		&nbsp;
-      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1">
+      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1" data-namaaja="$2">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',
@@ -37,40 +37,86 @@ class bidangModel extends CI_Model {
 
   	//insert data method
   	function insert_bidang(){
-        $now = date('Y-m-d H:i:s');
-      	$data=array(
-          'nama'  => $this->input->post('input_nama'),
-          'kode'  => $this->input->post('input_kode'),
-          'status'  => $this->input->post('input_status'),
-        	'alasan'	=> $this->input->post('input_alasan'),
-          'created_at'  => $now,
-          'updated_at'  => $now,  
-      	);
-      	$result=$this->db->insert('bidang', $data);
-      	return $result;
+      $nama = $this->input->post('input_nama');
+      $kode = $this->input->post('input_kode');
+      $status = $this->input->post('input_status');
+      $alasan = $this->input->post('input_alasan');
+      $now = date('Y-m-d H:i:s');
+
+      /*inserting into bidang*/
+    	$data=array(
+        'nama'  => $nama,
+        'kode'  => $kode,
+        'status'  => $status,
+      	'alasan'	=> $alasan,
+        'created_at'  => $now  
+    	);
+    	$result=$this->db->insert('bidang', $data);
+
+      /*inserting into log*/
+      $data = array(
+        'userId' => '001',
+        'aktivitas' => "Menambahkan bidang $nama",
+        'alasan' => $alasan,
+        'created_at' => $now
+      );
+      $result = $this->db->insert('log', $data);
+
+    	return $result;
   	}
 
   	//update data method
   	function update_bidang(){
-        $now = date('Y-m-d H:i:s');
-      	$id=$this->input->post('edit_id');
-        $data=array(
-          'nama'  => $this->input->post('edit_nama'),
-          'kode'  => $this->input->post('edit_kode'),
-          'status'  => $this->input->post('edit_status'),
-          'alasan'  => $this->input->post('edit_alasan'),
-          'updated_at'  => $now
-        );
-        $this->db->where('id',$id);
-        $result=$this->db->update('bidang', $data);
-        return $result;
+      $nama = $this->input->post('edit_nama');
+      $kode = $this->input->post('edit_kode');
+      $status = $this->input->post('edit_status');
+      $alasan = $this->input->post('edit_alasan');  
+      $now = date('Y-m-d H:i:s');
+    	$id=$this->input->post('edit_id');
+
+      /*update from bidang*/
+      $data=array(
+        'nama'  => $nama,
+        'kode'  => $kode,
+        'status'  => $status,
+        'alasan'  => $alasan,
+        'updated_at'  => $now
+      );
+      $this->db->where('id',$id);
+      $result=$this->db->update('bidang', $data);
+
+      /*insert into log*/
+      $data = array(
+        'userId' => '001',
+        'aktivitas' => "Merubah bidang $nama",
+        'alasan' => $alasan,
+        'created_at' => $now
+      );
+      $result = $this->db->insert('log', $data);
+
+      return $result;
   	}
 
   	//delete data method
   	function delete_bidang(){
-      	$id=$this->input->post('id');
-      	$this->db->where('id',$id);
+      $id=$this->input->post('delete_id');
+      $nama = $this->input->post('delete_nama');
+      $alasan = $this->input->post('delete_alasan');
+      $now = date('Y-m-d H:i:s');
+
+      /*deleting from bidang*/
+      $this->db->where('id',$id);
      	$result=$this->db->delete('bidang');
-      	return $result;
+
+      /*insert into log*/
+      $data = array(
+        'userId' => '001',
+        'aktivitas' => "Menghapus bidang $nama",
+        'alasan' => $alasan,
+        'created_at' => $now
+      );
+      $result = $this->db->insert('log', $data);
+
+      return $result;
 	}
 }

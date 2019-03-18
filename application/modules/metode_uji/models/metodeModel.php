@@ -26,7 +26,7 @@ class metodeModel extends CI_Model {
       			</i>
       		</a>
       		&nbsp;
-      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1">
+      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1" data-namaaja="$2">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',
@@ -37,35 +37,82 @@ class metodeModel extends CI_Model {
 
   	//insert data method
   	function insert_metode(){
+      $nama = $this->input->post('input_nama');
+      $keterangan = $this->input->post('input_keterangan');
+      $status = $this->input->post('input_status');
+      $alasan = $this->input->post('input_alasan');
+      $date = date('Y-m-d H:i:s');
+
+        /*insert into metode table*/
       	$data=array(
-          'nama'  => $this->input->post('input_nama'),
-          'keterangan'  => $this->input->post('input_keterangan'),
-          'status'  => $this->input->post('input_status'),
-        	'alasan'	=> $this->input->post('input_alasan'),
+          'nama'  => $nama,
+          'keterangan'  => $keterangan,
+          'status'  => $status,
+        	'alasan'	=> $alasan,
+          'created_at' => $date
       	);
       	$result=$this->db->insert('metode', $data);
+
+        /*insert into log*/ 
+        $data=array(
+          'userId'  => "001",
+          'aktivitas'  => "Menambahkan metode uji $nama ",
+          'alasan'  => $alasan,
+          'created_at' => $date
+        );
+        $result=$this->db->insert('log', $data);
       	return $result;
   	}
 
   	//update data method
   	function update_metode(){
       	$id=$this->input->post('edit_id');
+        $nama=$this->input->post('edit_nama');
+        $keterangan=$this->input->post('edit_keterangan');
+        $status=$this->input->post('edit_status');
+        $alasan=$this->input->post('edit_alasan');
+        $date = date('Y-m-d H:i:s');
+
+        /*updateing metode*/
         $data=array(
-          'nama'  => $this->input->post('edit_nama'),
-          'keterangan'  => $this->input->post('edit_keterangan'),
-          'status'  => $this->input->post('edit_status'),
-          'alasan'  => $this->input->post('edit_alasan')
+          'nama'  => $nama,
+          'keterangan'  => $keterangan,
+          'status'  => $status,
+          'alasan'  => $alasan,
+          'updated_at' => $date
         );
         $this->db->where('id',$id);
         $result=$this->db->update('metode', $data);
+
+        /*insert into log*/ 
+        $data=array(
+          'userId'  => "001",
+          'aktivitas'  => "Merubah metode uji $nama ",
+          'alasan'  => $alasan,
+          'created_at' => $date
+        );
+        $result=$this->db->insert('log', $data);
         return $result;
   	}
 
   	//delete data method
   	function delete_metode(){
-      	$id=$this->input->post('id');
-      	$this->db->where('id',$id);
+      /*delete from metode*/
+      $id=$this->input->post('id');
+      $this->db->where('id',$id);
      	$result=$this->db->delete('metode');
+
+      /*insert into log*/
+      $date = date('Y-m-d H:i:s');
+      $nama = $this->input->post('delete_nama');
+      $data=array(
+          'userId'  => "001",
+          'aktivitas'  => "Menghapus metode uji $nama",
+          'alasan'  => $this->input->post('delete_alasan'),
+          'created_at' => $date
+        );
+        $result=$this->db->insert('log', $data);
+
       	return $result;
 	}
 }

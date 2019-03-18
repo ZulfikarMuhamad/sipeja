@@ -27,7 +27,7 @@ class seksieModel extends CI_Model {
       			</i>
       		</a>
       		&nbsp;
-      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-sidaja="$1">
+      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-sidaja="$1" data-snamaaja="$3">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',
@@ -38,42 +38,89 @@ class seksieModel extends CI_Model {
 
   	//insert data method
   	function insert_seksie(){
-        $now = date('Y-m-d H:i:s');
-      	$data=array(
-          'nama'  => $this->input->post('input_nama'),
-          'kode'  => $this->input->post('input_kode'),
-          'bidangId'  => $this->input->post('input_bidang'),
-          'status'  => $this->input->post('input_status'),
-        	'alasan'	=> $this->input->post('input_alasan'),
-          'created_at'  => $now,
-          'updated_at'  => $now,  
-      	);
-      	$result=$this->db->insert('seksie', $data);
-      	return $result;
+      $nama = $this->input->post('input_nama');
+      $kode = $this->input->post('input_kode');
+      $bidangId = $this->input->post('input_bidang');
+      $status = $this->input->post('input_status');
+      $alasan = $this->input->post('input_alasan');
+      $now = date('Y-m-d H:i:s');
+
+      /*insert into seksie*/
+    	$data=array(
+        'nama'  => $nama,
+        'kode'  => $kode,
+        'bidangId'  => $bidangId,
+        'status'  => $status,
+      	'alasan'	=> $alasan,
+        'created_at'  => $now
+    	);
+    	$result=$this->db->insert('seksie', $data);
+
+      /*insert into log*/
+      $data = array(
+        'userId'=>'001',
+        'aktivitas'=>"Menambahkan seksie $nama",
+        'alasan'=>$alasan,
+        'created_at'=>$now
+      );
+      $result = $this->db->insert('log', $data);
+
+    	return $result;
   	}
 
   	//update data method
   	function update_seksie(){
-        $now = date('Y-m-d H:i:s');
-      	$id=$this->input->post('edit_id');
-        $data=array(
-          'nama'  => $this->input->post('edit_nama'),
-          'kode'  => $this->input->post('edit_kode'),
-          'bidangId'  => $this->input->post('edit_bidang'),
-          'status'  => $this->input->post('edit_status'),
-          'alasan'  => $this->input->post('edit_alasan'),
-          'updated_at'  => $now
-        );
-        $this->db->where('id',$id);
-        $result=$this->db->update('seksie', $data);
-        return $result;
+      $nama = $this->input->post('edit_nama');
+      $kode = $this->input->post('edit_kode');
+      $bidangId = $this->input->post('edit_bidang');
+      $status = $this->input->post('edit_status');
+      $alasan = $this->input->post('edit_alasan');
+      $now = date('Y-m-d H:i:s');
+    	$id=$this->input->post('edit_id');
+
+      /*update from seksie*/
+      $data=array(
+        'nama'  => $nama,
+        'kode'  => $kode,
+        'bidangId'  => $bidangId,
+        'status'  => $status,
+        'alasan'  => $alasan,
+        'updated_at'  => $now
+      );
+      $this->db->where('id',$id);
+      $result=$this->db->update('seksie', $data);
+
+      /*insert into log*/
+      $data = array(
+        'userId'=>'001',
+        'aktivitas'=>"Merubah seksie $nama",
+        'alasan'=>$alasan,
+        'created_at'=>$now
+      );
+      $result = $this->db->insert('log', $data);
+
+      return $result;
   	}
 
   	//delete data method
   	function delete_seksie(){
-      	$id=$this->input->post('id');
+      	$id=$this->input->post('delete_id');
+        $nama = $this->input->post('delete_nama');
+        $alasan = $this->input->post('delete_alasan');
+
+        /*delete from seksie*/
       	$this->db->where('id',$id);
      	  $result=$this->db->delete('seksie');
+
+        /*inserting into log*/
+        $data = array(
+          'userId' => '001',
+          'aktivitas' => "Menghapus seksie $nama",
+          'alasan' => $alasan,
+          'created_at' => $now
+        );
+        $result = $this->db->insert('log', $data);
+
       	return $result;
 	}
 }
