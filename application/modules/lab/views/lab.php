@@ -493,7 +493,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			});
       	}
 
-      	/*
+      	
       	$("#button_add").click(function(){
 	        $('#input_bidang').change(function(){
 
@@ -505,7 +505,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				   	$.ajax({
 				    	url:"<?php echo base_url();?>index.php/lab/lab/get_seksie_ctrlr",
 				    	method:"POST",
-				    	data:{abc:input_bidang},
+				    	data:{abc:abc},
 				    	success:function(data){
 				     		$('[name="input_seksie"]').html(data);
 				     		//$('#input_seksie').html('<option value="">abcd</option>');
@@ -518,7 +518,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 			});  
     	})
-    	*/  
+    	
 
       	$('#table_lab').on('click','.detail_record',function(){
             var laidaja=$(this).data('laidaja');

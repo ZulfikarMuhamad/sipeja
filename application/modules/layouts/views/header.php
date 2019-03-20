@@ -22,6 +22,8 @@
 		<!-- Specific Page Vendor CSS -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/select2/select2.css'); ?>" />
 		<link rel="stylesheet" href="<?php echo base_url('assets/datatables/datatables.min.css'); ?>" />
+		<!-- Include SmartWizard CSS -->
+		
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/stylesheets/theme.css'); ?>" />
@@ -34,6 +36,13 @@
 
 		<!-- Head Libs -->
 		<script src="<?php echo base_url('assets/vendor/modernizr/modernizr.js'); ?>"></script>
+
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/smartwizard/css/smart_wizard.css'); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/smartwizard/css/smart_wizard_theme_circles.css'); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/smartwizard/css/smart_wizard_theme_arrows.css'); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/smartwizard/css/smart_wizard_theme_dots.css'); ?>" />
+
+
 
 	</head>
 	<body>
