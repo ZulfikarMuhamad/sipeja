@@ -38,7 +38,7 @@ class labModel extends CI_Model {
       	</i>
       </a>
       &nbsp;
-      <a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-laidaja="$1">
+      <a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-laidaja="$1" data-lanamaaja="$3">
       	<i class="fa fa-trash-o" style="color: #777777">
       	</i>
       </a>',
@@ -48,18 +48,31 @@ class labModel extends CI_Model {
   }
 
   	//insert data method
-  function insert_lingkup(){
+  function insert_lab(){
     $now = date('Y-m-d H:i:s');
+    $nama = $this->input->post('input_nama');
+    $kode = $this->input->post('input_kode');
+    $labId = $this->input->post('input_lab');
+    $status = $this->input->post('input_status');
+    $alasan = $this->input->post('input_alasan');
+    /*insert intu lab*/
     $data=array(
-      'nama'  => $this->input->post('input_nama'),
-      'kode'  => $this->input->post('input_kode'),
-      'labId'  => $this->input->post('input_lab'),
-      'status'  => $this->input->post('input_status'),
-      'alasan'	=> $this->input->post('input_alasan'),
-      'created_at'  => $now,
-      'updated_at'  => $now,  
+      'nama'  => $nama,
+      'kode'  => $kode,
+      'labId'  => $labId,
+      'status'  => $status,
+      'alasan'	=> $alasan,
+      'created_at'  => $now  
     );
-    $result=$this->db->insert('lingkup', $data);
+    $result=$this->db->insert('lab', $data);
+
+    /*insert into log*/
+    $data = array(
+      'userId' => '001',
+      'aktivitas' => "Menambahkan laboratorium $nama",
+      'alasan' => $alasan,
+      'created_at' => $now
+    );
     return $result;
   }
 

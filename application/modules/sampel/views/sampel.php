@@ -86,7 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Alasan</label>
 							<div class="col-sm-9">
-								<textarea rows="3" name="input_alasan" class="form-control"></textarea>
+								<textarea rows="3" name="input_alasan" class="form-control" required="true"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -112,9 +112,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<i class="fa fa-question-circle"></i>
 						</div>
 						<div class="modal-text">
-							<input type="hidden" name="id" class="form-control" required>
+							<input type="hidden" name="delete_id" class="form-control" required>
+							<input type="hidden" name="delete_nama" class="form-control" required>
 							<h4>Are you sure?</h4>
 							<p>Are you sure that you want to delete this data?</p>
+							<textarea rows="3" name="delete_alasan" class="form-control" placeholder="Berikan alasan anda" required="true"></textarea>
 						</div>
 					</div>
 				</div>
@@ -182,7 +184,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Alasan</label>
 							<div class="col-sm-9">
-								<textarea rows="3" name="edit_alasan" class="form-control"></textarea>
+								<textarea rows="3" name="edit_alasan" class="form-control" required="true"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -409,8 +411,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       	$('#table_sampel').on('click','.delete_record',function(){
             var idaja=$(this).data('idaja');
+            var namaaja=$(this).data('namaaja');
+
             $('#modal_delete').modal('show');
-            $('[name="id"]').val(idaja);
+
+            $('[name="delete_id"]').val(idaja);
+            $('[name="delete_nama"]').val(namaaja);
       	});
 
 	});

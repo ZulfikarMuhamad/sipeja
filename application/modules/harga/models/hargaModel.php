@@ -32,7 +32,7 @@ class hargaModel extends CI_Model {
       			</i>
       		</a>
       		&nbsp;
-      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1">
+      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1" data-namaparameteraja="$2" data-namasampelaja="$3">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',

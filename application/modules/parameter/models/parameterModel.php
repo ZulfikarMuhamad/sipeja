@@ -27,7 +27,7 @@ class parameterModel extends CI_Model {
       			</i>
       		</a>
       		&nbsp;
-      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1">
+      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1" data-namaaja="$3">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',
@@ -38,36 +38,81 @@ class parameterModel extends CI_Model {
 
   	//insert data method
   	function insert_parameter(){
+      $labId = $this->input->post('input_lab');
+      $nama = $this->input->post('input_nama');
+      $status = $this->input->post('input_status');
+      $alasan = $this->input->post('input_alasan');
+      $date = date('Y-m-d H:i:s');
+      /*insert into parameter*/
       	$data=array(
-        	'labId'	=> $this->input->post('input_lab'),
-          'nama'  => $this->input->post('input_nama'),
-          'status'  => $this->input->post('input_status'),
-        	'alasan'	=> $this->input->post('input_alasan'),
+        	'labId'	=> $labId,
+          'nama'  => $nama,
+          'status'  => $status,
+        	'alasan'	=> $alasan,
+          'created_at' => $date
       	);
       	$result=$this->db->insert('parameter', $data);
+
+        /*insert into log*/
+        $data=array(
+          'userId' => '001',
+          'aktivitas' => "Menambahkan parameter $nama",
+          'alasan' => $alasan,
+          'created_at' => $date
+        );
+        $result=$this->db->insert('log', $data);
       	return $result;
   	}
 
   	//update data method
   	function update_parameter(){
-      	$id=$this->input->post('edit_id');
+      	$id = $this->input->post('edit_id');
+        $labId = $this->input->post('edit_lab');
+        $nama = $this->input->post('edit_nama');
+        $status = $this->input->post('edit_status');
+        $alasan = $this->input->post('edit_alasan');
+        $date = date('Y-m-d H:i:s');
+        /*update into parameter*/
       	$data=array( 
-          'labId'  => $this->input->post('edit_lab'),
-          'nama'  => $this->input->post('edit_nama'),
-          'status'  => $this->input->post('edit_status'),
-          'alasan'  => $this->input->post('edit_alasan'),
-
+          'labId'  => $labId,
+          'nama'  => $nama,
+          'status'  => $status,
+          'alasan'  => $alasan,
+          'updated_at' => $date
       	);
       	$this->db->where('id',$id);
       	$result=$this->db->update('parameter', $data);
+
+        /*inserting into log*/
+        $data = array(
+          'userId' => '001',
+          'aktivitas' => "Merubah parameter $nama",
+          'alasan' => $alasan,
+          'created_at' => $date
+        );
+        $result = $this->db->insert('log', $data);
       	return $result;
   	}
 
   	//delete data method
   	function delete_parameter(){
-      	$id=$this->input->post('id');
+      	$id=$this->input->post('delete_id');
+        $nama = $this->input->post('delete_nama');
+        $alasan = $this->input->post('delete_alasan');
+        $date = date('Y-m-d H:i:s');
+
+        /*delete from parameter*/
       	$this->db->where('id',$id);
-     	$result=$this->db->delete('parameter');
+     	  $result=$this->db->delete('parameter');
+
+        /*inserting into log*/
+        $data = array(
+          'userId' => '001',
+          'aktivitas' => "Menghapus parameter $nama",
+          'alasan' => $alasan,
+          'created_at' => $date
+        );
+        $result = $this->db->insert('log', $data);
       	return $result;
 	}
 

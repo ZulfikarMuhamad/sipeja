@@ -136,7 +136,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="<?php echo base_url('index.php/log'); ?>">
 								<i class="fa fa-file-text-o" aria-hidden="true"></i>
 								<span>Log</span>
 							</a>

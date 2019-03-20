@@ -28,7 +28,7 @@ class lingkupModel extends CI_Model {
       			</i>
       		</a>
       		&nbsp;
-      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-liidaja="$1">
+      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-liidaja="$1" data-linamaaja="$3">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',
@@ -39,42 +39,88 @@ class lingkupModel extends CI_Model {
 
   	//insert data method
   	function insert_lingkup(){
-        $now = date('Y-m-d H:i:s');
-      	$data=array(
-          'nama'  => $this->input->post('input_nama'),
-          'kode'  => $this->input->post('input_kode'),
-          'labId'  => $this->input->post('input_lab'),
-          'status'  => $this->input->post('input_status'),
-        	'alasan'	=> $this->input->post('input_alasan'),
-          'created_at'  => $now,
-          'updated_at'  => $now,  
-      	);
-      	$result=$this->db->insert('lingkup', $data);
-      	return $result;
+      $nama = $this->input->post('input_nama');
+      $kode = $this->input->post('input_kode');
+      $labId = $this->input->post('input_lab');
+      $status = $this->input->post('input_status');
+      $alasan = $this->input->post('input_alasan');
+      $now = date('Y-m-d H:i:s');
+      /*insert into ingkup*/
+    	$data=array(
+        'nama'  => $nama,
+        'kode'  => $kode,
+        'labId'  => $labId,
+        'status'  => $status,
+      	'alasan'	=> $alasan,
+        'created_at'  => $now  
+    	);
+    	$result=$this->db->insert('lingkup', $data);
+
+      /*insert into log*/
+      $data = array(
+        'userId' => '001',
+        'aktivitas' => "Menambahkan lingkup laboratorium $nama",
+        'alasan' => $alasan,
+        'created_at' => $now
+      );
+      $result = $this->db->insert('log', $data);
+
+    	return $result;
   	}
 
   	//update data method
   	function update_lingkup(){
-        $now = date('Y-m-d H:i:s');
-      	$id=$this->input->post('edit_id');
-        $data=array(
-          'nama'  => $this->input->post('edit_nama'),
-          'kode'  => $this->input->post('edit_kode'),
-          'labId'  => $this->input->post('edit_lab'),
-          'status'  => $this->input->post('edit_status'),
-          'alasan'  => $this->input->post('edit_alasan'),
-          'updated_at'  => $now
-        );
-        $this->db->where('id',$id);
-        $result=$this->db->update('lingkup', $data);
+      $now = date('Y-m-d H:i:s');
+    	$id=$this->input->post('edit_id');
+      $nama = $this->input->post('edit_nama');
+      $kode = $this->input->post('edit_kode');
+      $labId = $this->input->post('edit_lab');
+      $status = $this->input->post('edit_status');
+      $alasan = $this->input->post('edit_alasan');
+
+      /*update lingkup*/
+      $data=array(
+        'nama'  => $nama,
+        'kode'  => $kode,
+        'labId'  => $labId,
+        'status'  => $status,
+        'alasan'  => $alasan,
+        'updated_at'  => $now
+      );
+      $this->db->where('id',$id);
+      $result=$this->db->update('lingkup', $data);
+
+      /*insert into log*/
+      $data = array(
+      'userId' => '001',
+      'aktivitas' => "Merubah lingkup laboratorium $nama",
+      'alasan' => $alasan,
+      'created_at' => $now
+      );
+      $result = $this->db->insert('log', $data);
+
         return $result;
   	}
 
   	//delete data method
   	function delete_lingkup(){
-      	$id=$this->input->post('id');
-      	$this->db->where('id',$id);
-     	  $result=$this->db->delete('lingkup');
-      	return $result;
+    	$id=$this->input->post('delete_id');
+      $nama = $this->input->post('delete_nama');
+      $alasan = $this->input->post('delete_alasan');
+
+      /*delete from lingkup*/
+    	$this->db->where('id',$id);
+   	  $result=$this->db->delete('lingkup');
+
+      /*insert into log*/
+      $data = array(
+        'userId' => '001',
+        'aktivitas' => "Menghapus lingkup laboratorium $nama",
+        'alasan' => $alasan,
+        'created_at' => $now
+      );
+      $result = $this->db->insert('log', $data);
+
+      return $result;
 	}
 }
