@@ -21,6 +21,9 @@ class order extends CI_Controller {
 
 	function __construct(){
     	parent::__construct();
+    	if($this->session->userdata('stats')!= TRUE){
+    		redirect(base_url("index.php/login"));
+    	}
     	$this->load->library('datatables'); //load library ignited-dataTable
     	$this->load->model('orderModel'); //load model crud_model
   	}

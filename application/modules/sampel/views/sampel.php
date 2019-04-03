@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <section role="main" class="content-body">
 	<header class="page-header" style="float: right;">
 		<!-- Head title of page -->
-		<h2 style="float: right;"> Sampel </h2>
+		<h2 style="float: right;">Sampel</h2>
 	</header>
 
 	<!-- start: page -->

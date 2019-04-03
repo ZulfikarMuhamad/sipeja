@@ -21,6 +21,11 @@ class log extends CI_Controller {
 
 	function __construct(){
     	parent::__construct();
+    	if($this->session->userdata('stats')!= TRUE){
+    		redirect(base_url("index.php/login"));
+    	}else if($this->session->userdata('role') != '1'){
+    		redirect(base_url("index.php/Error404"));
+    	}
     	$this->load->library('datatables'); //load library ignited-dataTable
     	$this->load->model('logModel'); //load model crud_model
   	}

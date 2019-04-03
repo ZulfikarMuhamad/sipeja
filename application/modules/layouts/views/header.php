@@ -90,8 +90,8 @@
 								<img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-								<span class="name">John Doe Junior</span>
-								<span class="role">administrator</span>
+								<span class="name"><?php echo $this->session->userdata("nama"); ?></span>
+								<span class="role"><?php echo $this->session->userdata("roleName"); ?></span>
 							</div>
 			
 							<i class="fa custom-caret"></i>
@@ -101,7 +101,7 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="fa fa-power-off"></i> Logout</a>
+									<a role="menuitem" tabindex="-1" href="<?php echo site_url("login/login/logout"); ?>"><i class="fa fa-power-off"></i> Logout</a>
 								</li>
 							</ul>
 						</div>
