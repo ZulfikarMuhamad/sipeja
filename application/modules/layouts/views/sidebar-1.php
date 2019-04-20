@@ -27,6 +27,19 @@
 						</li>
 						<li class="nav-parent">
 							<a>
+								<i class="fa fa-gavel" aria-hidden="true"></i>
+								<span>Alat</span>
+							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="<?php echo base_url('index.php/alat'); ?>">
+										 Daftar Alat
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-parent">
+							<a>
 								<i class="fa fa-money" aria-hidden="true"></i>
 								<span>Order</span>
 							</a>

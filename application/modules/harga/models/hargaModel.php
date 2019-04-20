@@ -4,14 +4,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class hargaModel extends CI_Model {
 
 	
-	function get_sampel(){
-        $result=$this->db->get('sampel');
+	function get_harga(){
+        $result=$this->db->get('harga');
         return $result;
-    }
-    function get_parameter(){
-      	$result=$this->db->get('parameter');
-      	return $result;
-  	}
+		}
+
+	function get_sampel(){
+			$result=$this->db->get('sampel');
+			return $result;
+	}
+
+	function get_parameter(){
+		$result=$this->db->get('parameter');
+		return $result;
+}
   	
 	
 	function get_all_harga() {
