@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="row">
 				<div class="col-md-12">
 					<div class="mb-md pull-right">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Add <i class="fa fa-plus"></i></button>
+						<button class="btn btn-primary" id="button_add">Add <i class="fa fa-plus"></i></button>
 					</div>
 				</div>
 			</div>
@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>
 							<th style="text-align: center;">Kode</th>
 							<th style="text-align: center;">Nama Alat</th>
-                            <th style="text-align: center;">Parameter</th>
                             <th style="text-align: center;">Laboratorium</th>
+                            <th style="text-align: center;">Parameter</th>
 							<th style="text-align: center;">Kondisi</th>
                             <th style="text-align: center;">Action</th>
 						</tr>	
@@ -56,21 +56,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label class="col-sm-3 control-label">kode Alat</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-8">
-								<input type="text" name="input_kode" class="form-control" require="true">
+								<input type="text" name="input_kode" class="form-control" required="true">
 							</div>
                         </div>
                         <div class="form-group">
 							<label class="col-sm-3 control-label">Nama Alat</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-8">
-								<input type="text" name="input_nama" class="form-control" require="true">
+								<input type="text" name="input_nama" class="form-control" required="true">
 							</div>
 						</div>
                         <div class="form-group">
 							<label class="col-sm-3 control-label">Laboratorium</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-8">
-								<select name="input_lab" class="form-control" required>
+								<select name="input_lab" id="input_lab" class="form-control" required="true">
 									<option value="" selected disabled hidden>Pilih Laboratorium</option>
 									<?php foreach($lab->result() as $row) :?>
 										<option value="<?php echo $row->id; ?>">
@@ -84,13 +84,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label class="col-sm-3 control-label">Parameter</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-8">
-								<select name="input_parameter" class="form-control" required>
-									<option value="" disabled selected hidden>Pilih Parameter</option>
-									<?php foreach($parameter->result() as $row) :?>
-										<option value="<?php echo $row->id; ?>">
-											<?php echo $row->nama; ?>
+								<select name="input_parameter" id="input_parameter" class="form-control" required=true>
+									<option value="" disabled selected hidden>Pilih Laboratorium Terlebih Dulu</option>
+									<!-- ?php foreach($parameter->result() as $row) :?>
+										<option value="?php echo $row->id; ?>">
+											?php echo $row->nama; ?>
 										</option>
-									<?php endforeach; ?>
+									?php endforeach; ?> -->
 								</select>
 							</div>
                         </div>
@@ -98,11 +98,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label class="col-sm-3 control-label">Kondisi</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-8">
-								<input type="radio" name="input_kondisi" value="0">&nbsp;<span class="label label-success">Aktif</span></input>
+								<input type="radio" name="input_kondisi" value="0" required="true">&nbsp;<span class="label label-success">Aktif</span></input>
 								<span>&nbsp;</span>
-                                <input type="radio" name="input_kondisi" value="1">&nbsp;<span class="label label-warning">Dalam perbaikan</span></input>
+                                <input type="radio" name="input_kondisi" value="1" required="true">&nbsp;<span class="label label-warning">Dalam perbaikan</span></input>
                                 <span>&nbsp;</span>
-								<input type="radio" name="input_kondisi" value="2">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
+								<input type="radio" name="input_kondisi" value="2" required="true">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
 							</div>
 						</div>
 						<div class="form-group">
@@ -182,7 +182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label class="col-sm-3 control-label">Laboratorium</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-8">
-								<select name="edit_lab" class="form-control" required>
+								<select name="edit_lab" id="edit_lab" class="form-control" required="true">
 									<?php foreach($lab->result() as $row) :?>
 										<option value="<?php echo $row->id; ?>">
 											<?php echo $row->nama; ?>
@@ -195,13 +195,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<label class="col-sm-3 control-label">Parameter</label>
 							<label class="col-sm-1 control-label">:</label>
 							<div class="col-sm-8">
-								<select name="edit_parameter" id="edit_parameter" class="form-control" required>
-									<option value="" disabled selected hidden>Pilih Parameter</option>
-									<?php foreach($parameter->result() as $row) :?>
-										<option value="<?php echo $row->id; ?>">
-											<?php echo $row->nama; ?>
-										</option>
-									<?php endforeach; ?>
+								<select name="edit_parameter" id="edit_parameter" class="form-control" required="true">
+									<option value="">
+                                    	Pilih Laboratorium
+                                    </option>
 								</select>
 							</div>
                         </div>
@@ -345,8 +342,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             columns: [
                 {"data": "kode"},
                 {"data": "namaalat"},
-                {"data": "namaparameter"},
-                {"data": "namalab"},
+				{"data": "namalab"},
+                {"data": "namaparameter"},                
                 {"data": "kondisi"},
                 {"data": "view"}
             ],
@@ -376,27 +373,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           	}
       	});
 
-		//=========================custom add===========================
-		/* function abc(){
-      		$('#input_bidang').change(function(){
-				var input_bidang = $('#input_bidang').val();
-			  	if(input_bidang != ''){
+//=========================custom add==================================================================
+		$("#button_add").click(function(){
+			$('#modal_add').modal('show');
+
+			$('#input_lab').change(function(){
+				var input_lab = $('#input_lab').val();
+			  	if(input_lab != ''){
 				   	$.ajax({
-				    	url:"?php echo base_url();?>index.php/lab/lab/get_seksie_ctrlr",
+				    	url:"<?php echo base_url();?>index.php/alat/alat/get_parameterById_ctrlr",
 				    	method:"POST",
-				    	data:{input_bidang:input_bidang},
+				    	data:{input_lab:input_lab},
 				    	success:function(data){
-				     		$('[name="input_seksie"]').html(data);
+				     		$('[name="input_parameter"]').html(data);
 				    	}
 				   	});
 			  	}
 			  	else{
-					$('#input_seksie').html('<option value="">Pilih Bidang</option>');
+					$('#input_parameter').html('<option value="">Pilih Parameter</option>');
 				}
-			});
-      	}
- */
-		//==============================================================
+      		});
+		});
+//=====================================================================================================
 
       	$('#table_sampel').on('click','.detail_record',function(){
 			var kodeaja=$(this).data('kodeaja');
@@ -429,25 +427,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			var labIdaja=$(this).data('labidaja');
             var kondisiaja =$ (this).data('kondisiaja');
 		
-//	================================ ***** =====================================		
-			/* var edit_lab = labIdaja;
+//	================================ Declare value of parameter as value of laboratory =====================================		
+			var edit_lab = labIdaja;
 			$.ajax({
-				url:"?php echo base_url();?>index.php/alat/alat/get_parameterById_ctrlr",
+				url:"<?php echo base_url();?>index.php/alat/alat/get_parameterById_ctrlr",
 				method:"POST",
 				data:{edit_lab:edit_lab},
 				success:function(data){
 				    $('[name="edit_parameter"]').html(data);
 				    $('[name="edit_parameter"]').val(parameterIdaja);
 				}
-			}); */
-//	================================ ***** =====================================                  
+			});
+//	================================ Change value of parameter as value of laboratory  =====================================                  
             $('#modal_edit').modal('show');
 
-			/* $('#edit_lab').change(function(){
+            $('[name="edit_id"]').val(idaja);
+			$('[name="edit_kode"]').val(kodeaja);
+            $('[name="edit_nama"]').val(namaalataja);
+            $('[name="edit_lab"]').val(labIdaja);
+            $('[name="edit_parameter"]').val(parameterIdaja);
+
+			$('#edit_lab').change(function(){
 				var edit_lab = $('#edit_lab').val();
 			  	if(edit_lab != ''){
 				   	$.ajax({
-				    	url:"?php echo base_url();?>index.php/alat/alat/get_parameterById_ctrlr",
+				    	url:"<?php echo base_url();?>index.php/alat/alat/get_parameterById_ctrlr",
 				    	method:"POST",
 				    	data:{edit_lab:edit_lab},
 				    	success:function(data){
@@ -458,13 +462,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			  	else{
 					$('#edit_parameter').html('<option value="">Pilih Parameter</option>');
 				}
-      		}); */
-            
-            $('[name="edit_id"]').val(idaja);
-			$('[name="edit_kode"]').val(kodeaja);
-            $('[name="edit_nama"]').val(namaalataja);
-            $('[name="edit_lab"]').val(labIdaja);
-            $('[name="edit_parameter"]').val(parameterIdaja);
+      		});
+			  
             $('input:radio[name=edit_kondisi]:nth('+kondisiaja+')').attr('checked',true);			
 		});	  
 

@@ -71,8 +71,11 @@ class alat extends CI_Controller {
 	  }
 
 	function get_parameterById_ctrlr(){
-		if($this->input->post('edit_lab')){
-			 echo $this->labModel->get_parameterById($this->input->post('edit_lab'));
+		if($this->input->post('input_lab')){
+			echo $this->alatModel->get_parameterById($this->input->post('input_lab'));
+	   }
+		else if($this->input->post('edit_lab')){
+			 echo $this->alatModel->get_parameterById($this->input->post('edit_lab'));
 		}
    	}
 }
