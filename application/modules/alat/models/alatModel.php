@@ -49,7 +49,7 @@ function get_parameterById($labId){
       			</i>
       		</a>
       		&nbsp;
-      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1">
+      		<a href="javascript:void(0);" title="Hapus" class="delete_record label label-default" data-idaja="$1" data-kodeaja="$2" data-namaalataja="$3">
       			<i class="fa fa-trash-o" style="color: #777777">
       			</i>
       		</a>',
@@ -60,37 +60,86 @@ function get_parameterById($labId){
 
   	//insert data method
   	function insert_alat(){
+				$date = date('Y-m-d H:i:s');
+				$kode = $this->input->post('input_kode');
+				$nama =  $this->input->post('input_nama');
+				$labId = $this->input->post('input_lab');
+				$parameterId = $this->input->post('input_parameter');
+				$kondisi = $this->input->post('input_kondisi');
+
       	$data=array(
-            'kode'  => $this->input->post('input_kode'),
-            'nama'  => $this->input->post('input_nama'),
-            'labId'  => $this->input->post('input_lab'),
-            'parameterId'  => $this->input->post('input_parameter'),
-            'kondisi'	=> $this->input->post('input_kondisi'),
+            'kode'  => $kode,
+            'nama'  => $nama,
+            'labId'  => $labId,
+            'parameterId'  => $parameterId,
+            'kondisi'	=> $kondisi,
       	);
-      	$result=$this->db->insert('alat', $data);
+				$result=$this->db->insert('alat', $data);
+				
+			//===============Inserting into Log===============
+				$data = array(
+          'userId'=> $this->session->userdata('nama'),
+          'aktivitas'=>"Menambah alat $nama dengan kode $kode",
+          'alasan' => "",
+          'created_at' => $date
+				);
+				
+        $result = $this->db->insert('log', $data);
       	return $result;
   	}
 
   	//update data method
   	function update_alat(){
-      	$id=$this->input->post('edit_id');
+				$id=$this->input->post('edit_id');
+				$date = date('Y-m-d H:i:s');
+				$kode = $this->input->post('edit_kode');
+				$nama =  $this->input->post('edit_nama');
+				$labId = $this->input->post('edit_lab');
+				$parameterId = $this->input->post('edit_parameter');
+				$kondisi = $this->input->post('edit_kondisi');
+				$alasan = $this->input->post('edit_alasan');
+
         $data=array(
-            'kode'  => $this->input->post('edit_kode'),
-						'nama'  => $this->input->post('edit_nama'),
-            'labId'  => $this->input->post('edit_lab'),
-            'parameterId'  => $this->input->post('edit_parameter'),
-            'kondisi'	=> $this->input->post('edit_kondisi')
+            'kode'  => $kode,
+						'nama'  => $nama,
+            'labId'  => $labId,
+            'parameterId'  => $parameterId,
+            'kondisi'	=> $kondisi
         );
         $this->db->where('id',$id);
-        $result=$this->db->update('alat', $data);
+				$result=$this->db->update('alat', $data);
+
+			//===============Inserting into Log===============
+				$data = array(
+          'userId'=> $this->session->userdata('nama'),
+          'aktivitas'=>"Merubah alat $nama dengan kode $kode",
+          'alasan' => $alasan,
+          'created_at' => $date
+				);
+				
+        $result = $this->db->insert('log', $data);
         return $result;
   	}
 
   	//delete data method
   	function delete_alat(){
-      	$id=$this->input->post('id');
+				$id=$this->input->post('delete_id');
+				$nama=$this->input->post('delete_nama');
+				$kode=$this->input->post('delete_kode');
+				$alasan=$this->input->post('delete_alasan');
+				$date = date('Y-m-d H:i:s');
+
       	$this->db->where('id',$id);
-     	$result=$this->db->delete('alat');
+				 $result=$this->db->delete('alat');
+				 
+			//===============Inserting into Log===============
+				$data = array(
+          'userId'=> $this->session->userdata('nama'),
+          'aktivitas'=>"Menghapus alat $nama dengan kode $kode",
+          'alasan' => $alasan,
+          'created_at' => $date
+				);
+				$result = $this->db->insert('log', $data);
       	return $result;
 	}
 }

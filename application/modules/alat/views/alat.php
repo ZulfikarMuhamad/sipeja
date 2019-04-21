@@ -129,9 +129,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<i class="fa fa-question-circle"></i>
 						</div>
 						<div class="modal-text">
-							<input type="hidden" name="id" class="form-control" required>
+							<input type="hidden" name="delete_id" class="form-control" required>
+							<input type="hidden" name="delete_nama" class="form-control" required>
+							<input type="hidden" name="delete_kode" class="form-control" required>
 							<h4>Hapus Data!</h4>
 							<p>Anda yakin ingin menghapus data ini?</p>
+							<textarea rows="3" name="delete_alasan" class="form-control" placeholder="Berikan alasan anda" required="true"></textarea>
 						</div>
 					</div>
 				</div>
@@ -211,6 +214,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="radio" name="edit_kondisi" value="1">&nbsp;<span class="label label-warning">Dalam perbaikan</span></input>
                                 <span>&nbsp;</span>
 								<input type="radio" name="edit_kondisi" value="2">&nbsp;<span class="label label-danger">Tidak Aktif</span></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Alasan</label>
+							<div class="col-sm-9">
+								<textarea rows="3" name="edit_alasan" class="form-control" required="true"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -469,8 +478,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       	$('#table_sampel').on('click','.delete_record',function(){
             var idaja=$(this).data('idaja');
+            var kodeaja=$(this).data('kodeaja');
+            var namaalataja=$(this).data('namaalataja');
+
             $('#modal_delete').modal('show');
-            $('[name="id"]').val(idaja);
+
+            $('[name="delete_id"]').val(idaja);
+			$('[name="delete_nama"]').val(namaalataja);
+			$('[name="delete_kode"]').val(kodeaja);
       	});
 
 	});
